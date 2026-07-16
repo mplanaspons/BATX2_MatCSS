@@ -1,0 +1,480 @@
+:root {
+    --example-bg: #f0fdf4;       /* Gris molt net i relaxant */
+    --example-border: #059669;   /* Gris moderat per a la vora */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: #2d3748;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    background-color: #f7fafc;
+}
+
+.sidebar-wrapper {
+    width: 280px;
+    position: sticky;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;            /* Espai de separació entre el menú i la firma */
+}
+
+.container-principal {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.content-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 0;
+}
+
+.toc-sidebar {
+    width: 100%;          /* Ara s'adapta al 100% de l'amplada del wrapper */
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-height: calc(100vh - 160px); /* Ajustat perquè el menú no xafi la firma si és molt llarg */
+    overflow-y: auto;
+}
+
+.toc-sidebar h4 {
+    margin-top: 0;
+    color: #1a365d;
+    border-bottom: 2px solid #3182ce;
+    padding-bottom: 10px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.toc-sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc-sidebar li {
+    margin-bottom: 12px;
+}
+
+.toc-sidebar a {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.2s, font-weight 0.2s;
+    display: block;
+}
+
+.toc-sidebar a:hover {
+    color: #3182ce;
+    font-weight: 600;
+}
+
+/* --- MENU SUPERIOR DESPLEGABLE (NAVBAR) --- */
+.navbar-superior {
+    background-color: #1a365d;    /* Blau marí profund coherent amb els títols */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.menu-principal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;               /* Posa els elements en línia */
+}
+
+.element-menu {
+    position: relative;          /* Permet posicionar el submenú respecte a aquest bloc */
+}
+
+.enllac-principal {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+}
+
+/* Canvi de color quan passes el ratolí per sobre del botó principal */
+.element-menu:hover .enllac-principal {
+    background-color: #2b6cb0;   /* Blau més viu */
+}
+
+/* --- MENU SUPERIOR ESTILITZAT I CENTRAT --- */
+.navbar-superior {
+    background-color: #ffffff;
+    border-bottom: 2px solid #1a365d;
+    margin: 0 auto 40px auto;
+    max-width: 1160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;          /* Força l'eix central per a tots els fills directes */
+    padding: 6px 10px;            /* Espaiat intern de seguretat */
+}
+
+.menu-principal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;          /* Centra la llista verticalment */
+}
+
+.element-menu {
+    position: relative;
+    margin: 0;                    /* Neteja potencials marges heretats del CSS general */
+    padding: 0;                   /* Neteja potencials paddings heretats del CSS general */
+    display: flex;
+    align-items: center;
+}
+
+.enllac-principal {
+    display: inline-flex;         /* Canviem a inline-flex per a un control total */
+    align-items: center;          /* Centra el text exactament al mig dels 38px */
+    color: #1a365d;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    height: 38px;                 /* Alçada idèntica al títol i al logo */
+    padding: 0 16px;              /* Padding només lateral */
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Efecte l'enllac superior en passar el ratolí */
+.element-menu:hover .enllac-principal {
+    background-color: #eff6ff;    /* Fons blau menta/cel molt suau */
+    color: #2b6cb0;
+}
+
+/* --- EL LOGO A LA DRETA DE LA BARRA --- */
+.navbar-logo {
+    height: 38px;                 /* Mida molt compacta perquè no eixampli la barra */
+    width: auto;
+    display: block;
+    padding-right: 5px;
+}
+
+.navbar-titol {
+    color: #1a365d;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: default;
+    user-select: none;
+    display: inline-flex;         /* Permet centrar el text intern verticalment */
+    align-items: center;
+    height: 38px;                 /* Alçada idèntica al logo i als enllaços */
+    padding: 0 16px;              /* Padding només lateral per evitar desviaments */
+    box-sizing: border-box;
+}
+
+/* --- SUBMENÚ DESPLEGABLE (Es manté protegit) --- */
+.submenu-desplegable {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 0 0 6px 6px;
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    z-index: 1000;
+    border: 1px solid #e2e8f0;
+}
+
+.submenu-desplegable li a {
+    color: #2d3748;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.submenu-desplegable li a:hover {
+    background-color: #eff6ff;
+    color: #2b6cb0;
+}
+
+.element-menu:hover .submenu-desplegable {
+    display: block;
+}
+
+.submenu-desplegable:empty {
+    display: none !important;
+}
+
+h1 {
+    color: #1e3a8a;              /* Blau marí profund */
+    border-bottom: 3px solid #3b82f6; /* Subratllat blau viu */
+    padding-bottom: 12px;
+    font-size: 2.2em;
+    text-align: center;
+}
+
+h2 {
+    color: #1e40af;              /* Blau corporatiu intens */
+    border-bottom: 2px solid #cbd5e0;
+    padding-bottom: 8px;
+    margin-top: 35px;
+    font-size: 1.6em;
+}
+
+h3.section-title {
+    background-color: #eff6ff;   /* Blau cel molt suau i net */
+    color: #1e40af;              /* Text fosc de fàcil lectura */
+    border-left: 4px solid #3b82f6; /* Barra lateral que el fa destacar */
+    padding: 10px 15px;
+    border-radius: 0 6px 6px 0;
+    font-weight: bold;
+    margin-top: 35px;
+    font-size: 1.25em;
+    scroll-margin-top: 40px;
+}
+
+h4.subsection-title {
+    color: #1e3a8a;              /* Blau fosc coherent amb h1 */
+    margin-top: 45px;
+    border-bottom: 1px dashed #94a3b8;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+}
+
+ul, ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+.example-box {
+    background-color: var(--example-bg);
+    border-left: 4px solid var(--example-border);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.example-title {
+    font-weight: bold;
+    color: #334155;              /* Gris fosc elegant en lloc de taronja */
+    margin-bottom: 8px;
+}
+
+/* Classe per centrar elements en línia */
+.text-center {
+    text-align: center;
+}
+
+/* Sistema Grid estricte per forçar una sola fila sense salts */
+.grup-exemples {
+    display: grid;
+    gap: 15px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.grup-3-columnes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grup-2-columnes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grup-exemples .example-box {
+    margin: 0;
+}
+
+.important-note {
+    background-color: #ffe8cc;
+    border-left: 4px solid #d97706;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    color: #000000;
+}
+
+.exercici-bloc {
+    margin-bottom: 45px;
+    display: block;
+}
+
+.apartats-horitzontal {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    padding-left: 5px;
+}
+
+.solucio {
+    font-size: 0.88em;
+    color: #718096;
+    margin-top: 10px;
+    font-style: italic;
+    display: block;
+    background-color: #f8fafc;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 2px solid #cbd5e0;
+}
+
+.firma-pagina {
+    text-align: right;
+    font-size: 0.82em;
+    font-weight: 300;
+    font-style: italic;
+    color: #718096;
+    line-height: 1.6;
+    max-width: 100%;
+}
+
+.firma-logo {
+    max-width: 180px;      /* Redueix la imatge a una mida discreta i elegant */
+    height: auto;          /* Manté les proporcions originals sense deformar-lo */
+    display: block;        /* Permet aplicar marges de bloc */
+    margin-left: auto;     /* Empeny el logo cap a la dreta del tot */
+    margin-bottom: 12px;   /* Separa el logo del text inferior */
+    opacity: 0.9;          /* Integra el logotip amb el to suau del text */
+}
+
+@media (max-width: 1024px) {
+    .container-principal {
+        flex-direction: column;
+    }
+    .sidebar-wrapper {
+        display: contents; 
+    }
+    .toc-sidebar {
+        order: -1;        /* El menú puja a dalt de tot de la pantalla */
+        width: 100%;
+        position: static;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+}
+
+/* ==========================================
+   ESTILS DEL BOTÓ D'IMPRIMIR (PANTALLA)
+   ========================================== */
+.btn-imprimir {
+    background-color: #3182ce;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.95em;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-imprimir:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-1px);
+}
+
+.btn-imprimir:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   REGLES ESPECIALS PER A LA IMPRESSIÓ (PDF)
+   ========================================== */
+@media print {
+    /* 1. Ocultem completament la navegació, la barra lateral (TOC + firma) i el propi botó */
+    .navbar-superior,
+    .sidebar-wrapper,
+    .btn-imprimir {
+        display: none !important;
+    }
+
+    /* 2. Forcem que el contenidor de contingut ocupi el 100% de l'ample del paper */
+    .container-principal {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .content-container {
+        padding: 0 !important;
+        box-shadow: none !important; /* Eliminem ombres de pantalla */
+        background: transparent !important;
+        width: 100% !important;
+    }
+
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important; /* Estalvi de tinta i millor contrast en paper */
+        margin: 1.5cm !important;  /* Marges físics del foli */
+        padding: 0 !important;
+    }
+
+    /* 3. Evitem que els exemples i exercicis es tallin lletgement a mitja pàgina */
+    .example-box, 
+    .exercici-bloc {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+/* Bloc contenidor dels exercicis */
+.seccio-exercicis {
+    background-color: #f7fafc;
+    border-left: 4px solid #e53e3e; /* Vermell per diferenciar-ho de la teoria blau/verd */
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Estil del botó de descàrrega */
+.btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e53e3e;
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.btn-pdf:hover {
+    background-color: #c53030;
+}
+
+/* Ressaltat suau a la Taula de Continguts (TOC) */
+.toc-pdf {
+    color: #e53e3e !important;
+    font-weight: bold;
+}
