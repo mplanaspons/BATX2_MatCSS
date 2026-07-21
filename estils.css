@@ -409,42 +409,48 @@ li {
    REGLES ESPECIALS PER A LA IMPRESSIÓ (PDF)
    ========================================== */
 @media print {
-    /* 1. Ocultem completament la navegació, la barra lateral (TOC + firma) i el propi botó */
-    .navbar-superior,
-    .sidebar-wrapper,
-    .btn-imprimir {
-        display: none !important;
-    }
+            /* Força que la barra superior es comporti com una capçalera de pàgina neta */
+            .navbar-superior {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                background: none !important;
+                color: #000 !important;
+                padding: 10px 0 !important;
+                border-bottom: 2px solid #333 !important;
+                margin-bottom: 20px !important;
+            }
+            /* Mostra el títol i el logo correctament en blanc i negre/color d'impressió */
+            .navbar-titol {
+                display: block !important;
+                font-size: 1.4em !important;
+                font-weight: bold !important;
+                color: #000 !important;
+            }
+            .navbar-logo {
+                display: block !important;
+                height: 60px !important;
+                width: auto !important;
+            }
+            /* S'oculten els elements interactius de la web que no han d'anar al PDF */
+            .menu-principal, 
+            .btn-imprimir, 
+            .sidebar-wrapper, 
+            .btn-pdf {
+                display: none !important;
+            }
+            /* Reajusta el contenidor principal per aprofitar tot l'ample del foli */
+            .container-principal {
+                display: block !important;
+            }
+            .content-container {
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
 
-    /* 2. Forcem que el contenidor de contingut ocupi el 100% de l'ample del paper */
-    .container-principal {
-        display: block !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .content-container {
-        padding: 0 !important;
-        box-shadow: none !important; /* Eliminem ombres de pantalla */
-        background: transparent !important;
-        width: 100% !important;
-    }
-
-    body {
-        background-color: #ffffff !important;
-        color: #000000 !important; /* Estalvi de tinta i millor contrast en paper */
-        margin: 1.5cm !important;  /* Marges físics del foli */
-        padding: 0 !important;
-    }
-
-    /* 3. Evitem que els exemples i exercicis es tallin lletgement a mitja pàgina */
-    .example-box, 
-    .exercici-bloc {
-        page-break-inside: avoid;
-        break-inside: avoid;
-    }
-}
+        }
 
 /* Bloc contenidor dels exercicis */
 .seccio-exercicis {
