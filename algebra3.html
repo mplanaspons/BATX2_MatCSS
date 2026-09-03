@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÀLGEBRA 3: Sistemes d'equacions lineals</title>
+    <!-- Enllaç al fitxer d'estil extern creat -->
+    <link rel="stylesheet" href="estils.css">
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+    <nav class="navbar-superior">
+        <span class="navbar-titol">Matemàtiques aplicades a les CCSS</span>
+        <ul class="menu-principal">
+            <!-- Element 1: Àlgebra amb els seus desplegables -->
+            <li class="element-menu">
+                <a href="#" class="enllac-principal">Àlgebra</a>
+                <ul class="submenu-desplegable">
+                    <li><a href="index.html">Matrius</a></li>
+                    <li><a href="algebra2.html">Determinants</a></li>
+                    <li><a href="algebra3.html">Sistemes</a></li>
+                </ul>
+            </li>
+            
+            <!-- Element 2: Càlcul -->
+            <li class="element-menu">
+                <a href="#" class="enllac-principal">Càlcul</a>
+                <ul class="submenu-desplegable">
+                    <!-- Afegir futures línies <li> -->
+                </ul>
+            </li>
+            
+            <!-- Element 3: Estadística i Probabilitat -->
+            <li class="element-menu">
+                <a href="#" class="enllac-principal">Estadística i Probabilitat</a>
+                <ul class="submenu-desplegable">
+                    <!-- Afegir futures línies <li> -->
+                </ul>
+            </li>
+        </ul>
+        <!-- Logo integrat a la part dreta -->
+        <img src="Img/logo.jpg" alt="Logo Institut Pere Borrell" class="navbar-logo">
+    </nav>
+
+    <div class="container-principal">
+
+        <div class="content-container">
+            <!-- BOTÓ D'IMPRESSIÓ -->
+            <button class="btn-imprimir" onclick="window.print()">
+                🖨️ Descarrega el temari en PDF
+            </button>
+
+            <h2>Àlgebra 3: Sistemes d'equacions lineals</h2>
+           <h3 class="section-title" id="sistemes">Sistemes d'equacions lineals</h3>
+            <p>Un <strong>sistema d'equacions lineals (SEL)</strong> és un conjunt de dues o més equacions amb una o més incògnites on totes les variables tenen exponent igual a 1.</p>
+            
+            <p>Un sistema de $m$ equacions amb $n$ incògnites es pot expressar en forma general com:</p>
+            $$\begin{cases} 
+            a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\ 
+            a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\ 
+            \vdots \\ 
+            a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = b_m 
+            \end{cases}$$
+
+            <p>Aquest mateix sistema es pot escriure en <strong>forma matricial</strong> com $\mathbf{A \cdot X = B}$, on:</p>
+            <ul>
+                <li>$\mathbf{A}$: és la <strong>matriu de coeficients</strong> de dimensió $m \times n$.</li>
+                <li>$\mathbf{X}$: és la <strong>matriu columna d'incògnites</strong> de dimensió $n \times 1$.</li>
+                <li>$\mathbf{B}$: és la <strong>matriu columna de termes independents</strong> de dimensió $m \times 1$.</li>
+            </ul>
+
+            <p>Si afegim la columna dels termes independents a la dreta de la matriu de coeficients, s'obté la <strong>matriu ampliada</strong>, que es denota com $\mathbf{(A|B)}$:</p>
+            
+            $$(A|B) = \begin{pmatrix} 
+            a_{11} & a_{12} & \dots & a_{1n} & | & b_1 \\ 
+            a_{21} & a_{22} & \dots & a_{2n} & | & b_2 \\ 
+            \vdots & \vdots & \ddots & \vdots & | & \vdots \\ 
+            a_{m1} & a_{m2} & \dots & a_{mn} & | & b_m 
+            \end{pmatrix}$$
+
+            <p>Per a un sistema de $3$ equacions amb $3$ incògnites ($3 \times 3$), la matriu ampliada adopta la forma:</p>
+            
+            $$(A|B) = \begin{pmatrix} 
+            a_{11} & a_{12} & a_{13} & | & b_1 \\ 
+            a_{21} & a_{22} & a_{23} & | & b_2 \\ 
+            a_{31} & a_{32} & a_{33} & | & b_3 
+            \end{pmatrix}$$
+
+            <p><strong>Classificació segons el nombre de solucions:</strong></p>
+            <ul>
+                <li><strong>Sistemes Compatibles:</strong> són aquells que tenen solució.
+                    <ul>
+                        <li><strong>Sistema Compatible Determinat (SCD):</strong> té una <strong>única solució</strong>.</li>
+                        <li><strong>Sistema Compatible Indeterminat (SCI):</strong> té <strong>infinites solucions</strong>.</li>
+                    </ul>
+                </li>
+                <li><strong>Sistemes Incompatibles:</strong>
+                    <ul>
+                        <li><strong>Sistema Incompatible (SI):</strong> <strong>no té cap solució</strong>.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Sistemes equivalents:</strong></p>
+            <p>Diem que dos o més sistemes d'equacions lineals són <strong>equivalents</strong> quan tenen exactament el mateix conjunt de solucions, tot i que les seves equacions siguin diferents. Per transformar un sistema en un altre d'equivalent (com es fa en el mètode de Gauss), podem realitzar les següents <strong>operacions elementals</strong>:</p>
+            <ul>
+                <li>Intercanviar la posició de dues equacions.</li>
+                <li>Multiplicar o dividir tots els termes d'una equació per un nombre real diferent de zero.</li>
+                <li>Sumar o restar a una equació una altra equació multiplicada per un nombre real qualsevol.</li>
+            </ul>
+
+            <h3 class="section-title" id="gauss">Resolució de sistemes: Mètode de Gauss</h3>
+<p>El <strong>mètode de Gauss</strong> (o mètode d'eliminació gaussiana) consisteix a transformar el sistema d'equacions lineals inicial en un <strong>sistema escalonat equivalent</strong>, utilitzant operacions elementals per files sobre la matriu ampliada $(A|B)$.</p>
+<p>Mitjançant les operacions elementals per files, el mètode de Gauss transforma el sistema inicial en un <strong>sistema escalonat equivalent</strong> on s'han eliminat les incògnites per sota de la diagonal principal:</p>
+
+            $$\begin{cases} 
+            a_{11}x + a_{12}y + a_{13}z = b_1 \\ 
+            a_{21}x + a_{22}y + a_{23}z = b_2 \\ 
+            a_{31}x + a_{32}y + a_{33}z = b_3 
+            \end{cases} 
+            \quad \xrightarrow{\text{el que volem obtenir}} \quad 
+            \begin{cases} 
+            a'_{11}x + a'_{12}y + a'_{13}z = b'_1 \\ 
+            \phantom{a'_{21}x + } a'_{22}y + a'_{23}z = b'_2 \\ 
+            \phantom{a'_{31}x + a'_{32}y + } a'_{33}z = b'_3 
+            \end{cases}$$
+
+            <p>De forma matricial, $(A|B) \rightarrow (A'|B')$:</p>
+            $$(A|B) = \begin{pmatrix} 
+            a_{11} & a_{12} & a_{13} & | & b_1 \\ 
+            a_{21} & a_{22} & a_{23} & | & b_2 \\ 
+            a_{31} & a_{32} & a_{33} & | & b_3 
+            \end{pmatrix} 
+            \quad \xrightarrow{\text{operacions per files}} \quad 
+            (A'|B') = \begin{pmatrix} 
+            a'_{11} & a'_{12} & a'_{13} & | & b'_1 \\ 
+            0 & a'_{22} & a'_{23} & | & b'_2 \\ 
+            0 & 0 & a'_{33} & | & b'_3 
+            \end{pmatrix}$$
+
+            <p><em>Nota:</em> Els coeficients $a'_{ij}$ i $b'_i$ representen els nous valors obtinguts després de fer les combinacions de files, i els zeros per sota de la diagonal faciliten la resolució per substitució cap enrere.</p>
+
+            <p>Un cop el sistema està escalonat, és molt senzill determinar la seva tipologia (SCD, SCI o SI) i trobar-ne les solucions mitjançant el procés de <strong>substitució cap enrere</strong>.</p>
+            
+            
+            <div class="algorithm-box">
+                <h4>Quines accions estan permeses? (Operacions elementals per files)</h4>
+                <p>Per aconseguir la matriu triangular sense alterar les solucions del sistema, només podem utilitzar tres tipus d'operacions:</p>
+                <ul>
+                    <li><strong>Intercanviar dues files ($F_i \leftrightarrow F_j$):</strong> Molt útil si volem un $1$ a la primera posició o si tenim un zero a la diagonal.</li>
+                    <li><strong>Multiplicar o dividir una fila per un nombre diferent de zero ($F_i \rightarrow k \cdot F_i$):</strong> Útil per simplificar una fila amb coeficients grans o parells.</li>
+                    <li><strong>Sumar o restar a una fila una altra fila multiplicada per un nombre real ($F_i \rightarrow F_i + k \cdot F_j$):</strong> És l'operació clau per fer zeros.</li>
+                </ul>
+
+                <hr>
+
+                <h4>Pas a pas per aconseguir la matriu triangular (escalonada superior)</h4>
+                
+                <ol>
+                    <li><strong>PAS 1: Triar i posar a punt el pivot 1 ($a_{11}$)</strong>
+                        <ul>
+                            <li>Si $a_{11} = 0$, **intercanvia la Fila 1** amb una altra fila que no tingui un zero a la primera columna.</li>
+                            <li><em>Consell pràctic:</em> Si és possible, aconsegueix que $a_{11}$ sigui $1$ o $-1$ (intercanviant files). Això facilitarà molt els càlculs posteriors.</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li><strong>PAS 2: Fer zeros a la 1a columna (sota el pivot 1)</strong>
+                        <ul>
+                            <li>Transforma la Fila 2 utilitzant la Fila 1: $F_2 \rightarrow F_2 - k_1 \cdot F_1$</li>
+                            <li>Transforma la Fila 3 utilitzant la Fila 1: $F_3 \rightarrow F_3 - k_2 \cdot F_1$</li>
+                            <li><em>Resultat:</em> La primera columna tindrà la forma $\begin{pmatrix} a_{11} \\ 0 \\ 0 \end{pmatrix}$.</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li><strong>PAS 3: Triar el pivot 2 ($a'_{22}$)</strong>
+                        <ul>
+                            <li>Mira l'element de la segona fila i segona columna ($a'_{22}$). Si és $0$, **intercanvia la Fila 2 amb la Fila 3** ($F_2 \leftrightarrow F_3$).</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li><strong>PAS 4: Fer zero a la 2a columna (sota el pivot 2)</strong>
+                        <ul>
+                            <li>Transforma la Fila 3 utilitzant **únicament la Fila 2** (no utilitzis la Fila 1, o destruiràs els zeros aconseguits al Pas 2!): $F_3 \rightarrow F_3 - k_3 \cdot F_2$</li>
+                            <li><em>Resultat:</em> La matriu ja té forma **triangular superior** $\begin{pmatrix} a'_{11} & a'_{12} & a'_{13} \\ 0 & a'_{22} & a'_{23} \\ 0 & 0 & a''_{33} \end{pmatrix}$.</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li><strong>PAS 5: Interpretar i resoldre</strong>
+                        <ul>
+                            <li><strong>Si $a''_{33} \neq 0$:</strong> Resol el sistema de baix cap a dalt (substitució cap enrere) per trobar $z$, després $y$, i finalment $x$ (**SCD**).</li>
+                            <li><strong>Si l'última fila és $0 \; 0 \; 0 \; | \; 0$:</strong> El sistema té una fila nul·la. Assigna un paràmetre $z = \lambda$ (**SCI**).</li>
+                            <li><strong>Si l'última fila és $0 \; 0 \; 0 \; | \; k$ ($k \neq 0$):</strong> Has trobat una incoherència $0 = k$ (**SI**).</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <ol>
+               
+            <h4>Exemples il·lustratius del mètode de Gauss</h4>
+
+            <div class="example-box">
+                <div class="example-title">Exemple 1: Sistema Compatible Determinat (SCD)</div>
+                Resol pel mètode de Gauss el següent sistema:
+                $$\begin{cases} x + y + z = 6 \\ x - y + z = 2 \\ 2x + y - z = 1 \end{cases}$$
+
+                <p><strong>1. Escrivim la matriu ampliada $(A|B)$:</strong></p>
+                $$(A|B) = \begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 1 & -1 & 1 & | & 2 \\ 2 & 1 & -1 & | & 1 \end{pmatrix}$$
+
+                <p><strong>2. Fem zeros a la primera columna ($F_2 \rightarrow F_2 - F_1$ i $F_3 \rightarrow F_3 - 2F_1$):</strong></p>
+                $$\begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & -2 & 0 & | & -4 \\ 0 & -1 & -3 & | & -11 \end{pmatrix}$$
+
+                <p><strong>3. Intercanviem $F_2 \leftrightarrow F_3$ per facilitar els càlculs i fem zero sota la segona diagonal ($F_3 \rightarrow F_3 - 2F_2$):</strong></p>
+                $$\begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & -1 & -3 & | & -11 \\ 0 & -2 & 0 & | & -4 \end{pmatrix} \xrightarrow{F_3 \rightarrow F_3 - 2F_2} \begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & -1 & -3 & | & -11 \\ 0 & 0 & 6 & | & 18 \end{pmatrix}$$
+
+                <p><strong>4. Substitució cap enrere:</strong></p>
+                <ul>
+                    <li>De la 3a fila: $6z = 18 \implies \mathbf{z = 3}$</li>
+                    <li>De la 2a fila: $-y - 3z = -11 \implies -y - 3(3) = -11 \implies -y = -2 \implies \mathbf{y = 2}$</li>
+                    <li>De la 1a fila: $x + y + z = 6 \implies x + 2 + 3 = 6 \implies \mathbf{x = 1}$</li>
+                </ul>
+                <p><strong>Conclusió:</strong> És un <strong>Sistema Compatible Determinat (SCD)</strong> amb solució única $(x, y, z) = (1, 2, 3)$.</p>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">Exemple 2: Sistema Compatible Indeterminat (SCI)</div>
+                Resol pel mètode de Gauss el següent sistema:
+                $$\begin{cases} x + 2y - z = 3 \\ 2x + 5y + z = 7 \\ 3x + 7y = 10 \end{cases}$$
+
+                <p><strong>1. Escrivim la matriu ampliada $(A|B)$:</strong></p>
+                $$(A|B) = \begin{pmatrix} 1 & 2 & -1 & | & 3 \\ 2 & 5 & 1 & | & 7 \\ 3 & 7 & 0 & | & 10 \end{pmatrix}$$
+
+                <p><strong>2. Fem zeros a la primera columna ($F_2 \rightarrow F_2 - 2F_1$ i $F_3 \rightarrow F_3 - 3F_1$):</strong></p>
+                $$\begin{pmatrix} 1 & 2 & -1 & | & 3 \\ 0 & 1 & 3 & | & 1 \\ 0 & 1 & 3 & | & 1 \end{pmatrix}$$
+
+                <p><strong>3. Fem zero a la segona columna ($F_3 \rightarrow F_3 - F_2$):</strong></p>
+                $$\begin{pmatrix} 1 & 2 & -1 & | & 3 \\ 0 & 1 & 3 & | & 1 \\ 0 & 0 & 0 & | & 0 \end{pmatrix}$$
+
+                <p><strong>4. Interpretació i parametrització:</strong></p>
+                <p>La tercera fila ha quedat completament nul·la ($0 = 0$). Tenim 2 equacions no nul·les i 3 incògnites ($2 < 3$). Es tracta d'un <strong>Sistema Compatible Indeterminat (SCI)</strong> amb <strong>infinites solucions</strong>.</p>
+                <p>Assignem un paràmetre real a una de les incògnites, per exemple $\mathbf{z = \lambda}$ ($\lambda \in \mathbb{R}$):</p>
+                <ul>
+                    <li>De la 2a fila: $y + 3z = 1 \implies y + 3\lambda = 1 \implies \mathbf{y = 1 - 3\lambda}$</li>
+                    <li>De la 1a fila: $x + 2y - z = 3 \implies x + 2(1 - 3\lambda) - \lambda = 3 \implies x + 2 - 7\lambda = 3 \implies \mathbf{x = 1 + 7\lambda}$</li>
+                </ul>
+                <p><strong>Solució general:</strong> $(x, y, z) = (1 + 7\lambda, \; 1 - 3\lambda, \; \lambda) \quad \text{amb } \lambda \in \mathbb{R}$.</p>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">Exemple 3: Sistema Incompatible (SI)</div>
+                Resol pel mètode de Gauss el següent sistema:
+                $$\begin{cases} x + y - z = 2 \\ 2x + y + z = 5 \\ 3x + 2y = 10 \end{cases}$$
+
+                <p><strong>1. Escrivim la matriu ampliada $(A|B)$:</strong></p>
+                $$(A|B) = \begin{pmatrix} 1 & 1 & -1 & | & 2 \\ 2 & 1 & 1 & | & 5 \\ 3 & 2 & 0 & | & 10 \end{pmatrix}$$
+
+                <p><strong>2. Fem zeros a la primera columna ($F_2 \rightarrow F_2 - 2F_1$ i $F_3 \rightarrow F_3 - 3F_1$):</strong></p>
+                $$\begin{pmatrix} 1 & 1 & -1 & | & 2 \\ 0 & -1 & 3 & | & 1 \\ 0 & -1 & 3 & | & 4 \end{pmatrix}$$
+
+                <p><strong>3. Fem zero a la segona columna ($F_3 \rightarrow F_3 - F_2$):</strong></p>
+                $$\begin{pmatrix} 1 & 1 & -1 & | & 2 \\ 0 & -1 & 3 & | & 1 \\ 0 & 0 & 0 & | & 3 \end{pmatrix}$$
+
+                <p><strong>4. Interpretació:</strong></p>
+                <p>La tercera fila es tradueix en l'equació $0x + 0y + 0z = 3 \implies \mathbf{0 = 3}$, la qual cosa és una <strong>incoherència o absurda matemàtica</strong>.</p>
+                <p><strong>Conclusió:</strong> El sistema és <strong>Incompatible (SI)</strong> i <strong>no té cap solució</strong>.</p>
+            </div>
+
+                
+            <h3 class="section-title" id="rouche">Classificació de sistemes: Teorema de Rouché-Frobenius</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Classificació</th>
+                        <th>Mètode de Gauss</th>
+                        <th>Teorema de Rouché-Frobenius</th>
+                        <th>Solucions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Compatible Determinat (SCD)</strong></td>
+                        <td>Nº equacions = Nº incògnites</td>
+                        <td>$\text{Rang}(A) = \text{Rang}(A|B) = \text{Nº incògnites}$</td>
+                        <td>Solució única</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compatible Indeterminat (SCI)</strong></td>
+                        <td>Nº equacions &lt; Nº incògnites</td>
+                        <td>$\text{Rang}(A) = \text{Rang}(A|B) &lt; \text{Nº incògnites}$</td>
+                        <td>Infinites solucions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Incompatible (SI)</strong></td>
+                        <td>Equacions absurdes ($0 = k$)</td>
+                        <td>$\text{Rang}(A) \neq \text{Rang}(A|B)$</td>
+                        <td>No té solució</td>
+                    </tr>
+                </tbody>
+            </table>
+         
+            <h3 class="section-title" id="cramer">Resolució de sistemes compatibles determinats: Regla de Cramer</h3>
+
+            <p>La <strong>regla de Cramer</strong> és un mètode directe per resoldre sistemes d'equacions lineals mitjançant el desenvolupament de determinants. És especialment útil quan es treballa amb sistemes que tenen el mateix nombre d'equacions que d'incògnites.</p>
+
+            <h4>Condicions d'aplicació:</h4>
+            <p>Per poder aplicar la regla de Cramer a un sistema d'equacions lineals $\mathbf{A \cdot X = B}$, s'han de complir dues condicions indispensables:</p>
+            <ol>
+                <li><strong>El nombre d'equacions ha de ser igual al nombre d'incògnites</strong> ($m = n$). Per exemple, un sistema de $3 \times 3$.</li>
+                <li><strong>El determinant de la matriu de coeficients ha de ser diferent de zero</strong> ($|A| \neq 0$).</li>
+            </ol>
+            <p><em>Nota:</em> Si un sistema compleix aquestes dues condicions, pel Teorema de Rouché-Frobenius sabem que és un <strong>Sistema Compatible Determinat (SCD)</strong> i, per tant, té una solució única.</p>
+
+            <h4>Fórmules de la Regla de Cramer:</h4>
+            <p>Per a un sistema de $3 \times 3$ de la forma:</p>
+            $$\begin{cases} a_{11}x + a_{12}y + a_{13}z = b_1 \\ a_{21}x + a_{22}y + a_{23}z = b_2 \\ a_{31}x + a_{32}y + a_{33}z = b_3 \end{cases}$$
+
+            <p>El valor de cada incògnita s'obté dividint el determinant de la seva matriu associada pel determinant principal $|A|$:</p>
+
+            $$\mathbf{x = \frac{|A_x|}{|A|}}, \quad \mathbf{y = \frac{|A_y|}{|A|}}, \quad \mathbf{z = \frac{|A_z|}{|A|}}$$
+
+            <p>On les matrius auxiliars es construeixen així:</p>
+            <ul>
+                <li>$\mathbf{A_x}$: S'obté substituint la 1a columna de $A$ (coeficients de $x$) per la columna dels termes independents $B = \begin{pmatrix} b_1 \\ b_2 \\ b_3 \end{pmatrix}$.</li>
+                <li>$\mathbf{A_y}$: S'obté substituint la 2a columna de $A$ (coeficients de $y$) per la columna dels termes independents $B$.</li>
+                <li>$\mathbf{A_z}$: S'obté substituint la 3a columna de $A$ (coeficients de $z$) per la columna dels termes independents $B$.</li>
+            </ul>
+
+            <h4>Procediment pas a pas:</h4>
+            <ol>
+                <li>Comprovar que el nombre d'equacions coincideix amb el nombre d'incògnites.</li>
+                <li>Calcular el determinant de la matriu de coeficients $|A|$. Si $|A| \neq 0$, continuar. Si $|A| = 0$, el mètode de Cramer no es pot aplicar directament.</li>
+                <li>Construir les matrius $A_x, A_y, A_z$ i calcular els seus determinants respectius $|A_x|, |A_y|, |A_z|$.</li>
+                <li>Aplicar la fórmula per trobar el valor de cada variable: $x = \frac{|A_x|}{|A|}$, $y = \frac{|A_y|}{|A|}$, $z = \frac{|A_z|}{|A|}$.</li>
+            </ol>
+            
+            <h3 class="section-title" id="problemes">Resolució de problemes</h3>
+            <ol>
+                <li><strong>Identifica les incògnites i el seu domini</strong> (definir clarament què representa cada variable $x, y, z$).</li>
+                <li><strong>Planteja el sistema d'equacions</strong> basant-te en les relacions del text.</li>
+                <li><strong>Resol el sistema d'equacions</strong> utilitzant el mètode més eficient:
+                	<ul>
+                        <li>Pots <strong>aplicar el teorema de Rouché-Frobenius</strong> per establir el tipus de sistema, descartar els sistemes incompatibles i escollir el millor mètode.</li>
+                        <li>O bé, <strong>utilitzar el mètode de Gauss</strong> directament i interpretar el resultat obtingut.</li>
+                    </ul>
+                </li>
+                <li><strong>Redacta la resposta</strong> contextualitzant els resultats amb les seves unitats corresponents.</li>
+            </ol>
+           
+            <h3 class="section-title" id="exercicis">Exercicis resolts</h3>
+            
+            
+            
+            <div class="example-box">
+                <div class="example-title">Exercici 2: Resolució utilitzant el mètode de Gauss</div>
+                Resol pel mètode de Gauss el següent sistema d'equacions lineals:
+                $$\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y + 3z = 14 \end{cases}$$
+
+                <p><strong>Pas 1. Escriure la matriu ampliada $(A|B)$:</strong></p>
+                $$(A|B) = \begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 2 & -1 & 1 & | & 3 \\ 1 & 2 & 3 & | & 14 \end{pmatrix}$$
+
+                <p><strong>Pas 2. Fer zeros sota el primer element de la primera columna:</strong></p>
+                <ul>
+                    <li>Fila 2: $F_2 \rightarrow F_2 - 2F_1 \implies (2-2, -1-2, 1-2 \;|\; 3-12) = (0, -3, -1 \;|\; -9)$</li>
+                    <li>Fila 3: $F_3 \rightarrow F_3 - F_1 \implies (1-1, 2-1, 3-1 \;|\; 14-6) = (0, 1, 2 \;|\; 8)$</li>
+                </ul>
+                <p>La matriu queda:</p>
+                $$\begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & -3 & -1 & | & -9 \\ 0 & 1 & 2 & | & 8 \end{pmatrix}$$
+
+                <p>Intercanviem $F_2$ i $F_3$ per facilitar els càlculs:</p>
+                $$\begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & 1 & 2 & | & 8 \\ 0 & -3 & -1 & | & -9 \end{pmatrix}$$
+
+                <p><strong>Pas 3. Fer zero el terme sota la segona diagonal ($F_3 \rightarrow F_3 + 3F_2$):</strong></p>
+                $$\begin{pmatrix} 1 & 1 & 1 & | & 6 \\ 0 & 1 & 2 & | & 8 \\ 0 & 0 & 5 & | & 15 \end{pmatrix}$$
+
+                <p><strong>Pas 4. Substitució cap enrere:</strong></p>
+                <ul>
+                    <li>De la 3a fila: $5z = 15 \implies \mathbf{z = 3}$</li>
+                    <li>De la 2a fila: $y + 2z = 8 \implies y + 2(3) = 8 \implies \mathbf{y = 2}$</li>
+                    <li>De la 1a fila: $x + y + z = 6 \implies x + 2 + 3 = 6 \implies \mathbf{x = 1}$</li>
+                </ul>
+                <p><strong>Solució:</strong> Sistema Compatible Determinat amb solució única $(x, y, z) = (1, 2, 3)$.</p>
+            </div>
+              
+            <div class="example-box">
+                <div class="example-title">Exercici 3: Teorema de Rouché-Frobenius amb paràmetre</div>
+                Discutix el següent sistema d'equacions lineals en funció dels valors del paràmetre $k$:
+                $$\begin{cases} x + y + z = 1 \\ x + ky + z = k \\ x + y + kz = 1 \end{cases}$$
+
+                <p><strong>Pas 1. Calcular el determinant de la matriu de coeficients $A$:</strong></p>
+                $$|A| = \begin{vmatrix} 1 & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{vmatrix} = (k^2 + 1 + 1) - (k + 1 + k) = k^2 + 2 - 2k - 1 = k^2 - 2k + 1 = (k-1)^2$$
+
+                <p><strong>Pas 2. Trobar els valors crítics igualant el determinant a zero:</strong></p>
+                $$(k-1)^2 = 0 \implies \mathbf{k = 1}$$
+
+                <p><strong>Pas 3. Discussió dels casos:</strong></p>
+                <ul>
+                    <li><strong>Cas 1: Si $k \neq 1$</strong><br>
+                        El determinant $|A| \neq 0$. Per tant, $\text{rang}(A) = 3 = \text{rang}(A|B) = \text{nº d'incògnites}$.<br>
+                        Pel <strong>Teorema de Rouché-Frobenius</strong>, el sistema és <strong>Compatible Determinat (SCD)</strong> (té solució única).
+                    </li>
+                    <br>
+                    <li><strong>Cas 2: Si $k = 1$</strong><br>
+                        Substituïm $k=1$ a la matriu ampliada $(A|B)$:
+                        $$(A|B) = \begin{pmatrix} 1 & 1 & 1 & | & 1 \\ 1 & 1 & 1 & | & 1 \\ 1 & 1 & 1 & | & 1 \end{pmatrix}$$
+                        Com que les tres files són exactament iguals, només hi ha 1 fila linealment independent:<br>
+                        $$\text{rang}(A) = 1 \quad \text{i} \quad \text{rang}(A|B) = 1$$
+                        Com que $\text{rang}(A) = \text{rang}(A|B) = 1 < 3$ (nº d'incògnites), pel <strong>Teorema de Rouché-Frobenius</strong> el sistema és <strong>Compatible Indeterminat (SCI)</strong> (té infinites solucions).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">Exercici 4: Resolució per la Regla de Cramer</div>
+                Resol utilitzant la regla de Cramer el següent sistema d'equacions:
+                $$\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + y - z = 0 \end{cases}$$
+
+                <p><strong>Pas 1. Comprovar que $|A| \neq 0$:</strong></p>
+                $$|A| = \begin{vmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 1 & -1 \end{vmatrix} = (1 + 1 + 2) - (-1 + 1 - 2) = 4 - (-2) = 6 \neq 0$$
+                Com que el determinant és diferent de zero, podem aplicar la regla de Cramer.
+
+                <p><strong>Pas 2. Calcular els determinants de cada incògnita:</strong></p>
+                <ul>
+                    <li><strong>Per a $x$:</strong> Substituïm la 1a columna per la dels termes independents $\begin{pmatrix} 6 \\ 3 \\ 0 \end{pmatrix}$:
+                        $$|A_x| = \begin{vmatrix} 6 & 1 & 1 \\ 3 & -1 & 1 \\ 0 & 1 & -1 \end{vmatrix} = (6 + 0 + 3) - (0 + 6 - 3) = 9 - 3 = 6 \implies \mathbf{x = \frac{|A_x|}{|A|} = \frac{6}{6} = 1}$$
+                    </li>
+                    <li><strong>Per a $y$:</strong> Substituïm la 2a columna per la dels termes independents:
+                        $$|A_y| = \begin{vmatrix} 1 & 6 & 1 \\ 2 & 3 & 1 \\ 1 & 0 & -1 \end{vmatrix} = (-3 + 6 + 0) - (3 + 0 - 12) = 3 - (-9) = 12 \implies \mathbf{y = \frac{|A_y|}{|A|} = \frac{12}{6} = 2}$$
+                    </li>
+                    <li><strong>Per a $z$:</strong> Substituïm la 3a columna per la dels termes independents:
+                        $$|A_z| = \begin{vmatrix} 1 & 1 & 6 \\ 2 & -1 & 3 \\ 1 & 1 & 0 \end{vmatrix} = (0 + 3 + 12) - (-6 + 3 + 0) = 15 - (-3) = 18 \implies \mathbf{z = \frac{|A_z|}{|A|} = \frac{18}{6} = 3}$$
+                    </li>
+                </ul>
+                <p><strong>Solució final:</strong> $(x, y, z) = (1, 2, 3)$.</p>
+            </div>
+                
+            <div class="seccio-exercicis">
+                <h2>Exercicis</h2>
+                <p>Per a treballar els continguts d'aquesta unitat, trobaràs exercicis al següent PDF:</p>
+                
+                <!-- Botó de descàrrega directe -->
+                <a href="documents/exercicis-sistemes-26-27.pdf" target="_blank" class="btn-pdf">
+                    📄 Exercicis Sistemes 26-27 
+                </a>
+            </div>
+
+        </div> <!-- Tanca el content-container -->
+
+        <div class="sidebar-wrapper">
+            <nav class="toc-sidebar">
+                <h4>Contingut</h4>
+                <ul>
+                    <li><a href="#sistemes">Sistemes d'equacions lineals</a></li>
+                    <li><a href="#gauss">Mètode de Gauss</a></li>
+                    <li><a href="#rouche">Teorema Rouché-Frobenius</a></li>
+                    <li><a href="#cramer">Regla de Cramer</a></li>
+                    <li><a href="#problemes">Resolució de problemes</a></li>
+                    <li><a href="#exercicis">Exercicis resolts</a></li>
+                    <li><a href="documents/exercicis-sistemes-26-27.pdf" target="_blank" class="toc-pdf">📝 Exercicis Sistemes 26-27</a></li>
+                </ul>
+            </nav>
+
+            <div class="firma-pagina">
+                <br><br><br>
+                <!-- © 2026 Contingut creat per Marta Planas i Luz Lozano -->
+            </div>
+        </div> <!-- Tanca el sidebar-wrapper -->
+
+    </div> <!-- Tanca el container-principal -->
+
+</body>
+</html>
