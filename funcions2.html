@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Límits i continuïtat</title>
+    <!-- Enllaç al fitxer d'estil extern -->
+    <link rel="stylesheet" href="estils.css">
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+    <nav class="navbar-superior">
+    <span class="navbar-titol">Matemàtiques aplicades a les CCSS</span>
+    <ul class="menu-principal">
+        <!-- Element 1: Àlgebra amb els seus desplegables -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Àlgebra</a>
+            <ul class="submenu-desplegable">
+                <li><a href="index.html">Matrius</a></li>
+                <li><a href="algebra2.html">Determinants</a></li>
+                <li><a href="algebra3.html">Sistemes</a></li>
+            </ul>
+        </li>
+        
+        <!-- Element 2: Anàlisis -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Càlcul</a>
+            <ul class="submenu-desplegable">
+                <li><a href="funcions1.html">Funcions</a></li>
+                <li><a href="funcions2.html">Límits i continuïtat</a></li>
+                <li><a href="funcions3.html">Derivades</a></li>
+                <li><a href="funcions3.html">Aplicacions a la derivada</a></li>
+            </ul>
+        </li>
+        
+        <!-- Element 3: Estadística i Probabilitat -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Estadística i Probabilitat</a>
+            <ul class="submenu-desplegable">
+                <!-- Aquí afegiràs les línies <li> quan les tinguis -->
+            </ul>
+        </li>
+
+    </ul>
+    <!-- El logo integrat a la part dreta -->
+    <img src="Img/logo.jpg" alt="Logo Institut Pere Borrell" class="navbar-logo">
+</nav>
+
+    <!-- CONTENIDOR PRINCIPAL (AMB SIDEBAR I CONTINGUT) -->
+    <div class="container-principal">
+
+        <div class="content-container">
+            
+            <!-- BOTÓ D'IMPRESSIÓ -->
+            <button class="btn-imprimir" onclick="window.print()">
+                🖨️ Descarrega el temari en PDF
+            </button>
+
+            <h2>Límits i continuïtat</h2>
+
+            <!-- SECCIÓ 1: IDEA INTUÏTIVA DE LÍMIT -->
+            <h3 class="section-title" id="sec1">1. Idea intuïtiva al concepte de límit</h3>
+            <p>El límit d'una funció descriu la tendència dels valors de \(f(x)\) quan la variable independent \(x\) s'acosta a un valor concret \(a\) o creix indefinitament (\(\pm\infty\)).</p>
+
+            <h3>1.1. Diferència entre límit en un punt i a l'infinit</h3>
+            <div class="grid-2">
+                <div class="box-info">
+                    <h4>Límit en un punt</h4>
+                    <p>S'estudia la tendència de \(f(x)\) quan \(x\) s'apropa a un nombre real \(a\).</p>
+                    $$\lim_{x \to a} f(x) = L$$
+                </div>
+                <div class="box-success">
+                    <h4>Límit a l'infinit</h4>
+                    <p>S'estudia la tendència de \(f(x)\) quan \(x\) creix o decreix sense aturador.</p>
+                    $$\lim_{x \to +\infty} f(x) = L \quad \text{o} \quad \lim_{x \to -\infty} f(x) = L$$
+                </div>
+            </div>
+
+            <div class="box-alert">
+                <strong>Concepte clau:</strong> El límit en un punt no estudia què passa <em>exactament</em> quan \(x = a\), sinó el comportament de la funció quan ens hi <em>acostem</em> arbitràriament.
+            </div>
+
+            <h3>1.2. Representació gràfica del límit en un punt</h3>
+            <p>Quan la variable \(x\) s'acosta al valor \(a\), la funció pren valors cada vegada més propers a \(L \):</p>
+            $$\lim_{x \to a} f(x) = L$$
+
+            <div class="svg-box">
+                <svg aria-label="Representació intuïtiva del límit en un punt" height="380" viewBox="0 0 760 410" width="100%">
+                    <rect fill="#ffffff" height="410" width="760" x="0" y="0"></rect>
+                    <text fill="#222222" font-size="19" text-anchor="middle" x="380" y="28">Límit en un punt</text>
+                    <rect fill="#ffffff" height="290" stroke="#eeeeee" width="620" x="70" y="45"></rect>
+                    <line stroke="#eeeeee" x1="70" x2="690" y1="335" y2="335"></line>
+                    <line stroke="#eeeeee" x1="70" x2="690" y1="260" y2="260"></line>
+                    <line stroke="#eeeeee" x1="70" x2="690" y1="185" y2="185"></line>
+                    <line stroke="#eeeeee" x1="70" x2="690" y1="110" y2="110"></line>
+                    <line stroke="#222222" stroke-width="2.2" x1="70" x2="710" y1="335" y2="335"></line>
+                    <line stroke="#222222" stroke-width="2.2" x1="276.7" x2="276.7" y1="345" y2="35"></line>
+                    <polygon fill="#222222" points="710,335 698,329 698,341"></polygon>
+                    <polygon fill="#222222" points="276.7,35 270.7,48 282.7,48"></polygon>
+                    <text fill="#222222" font-size="17" font-style="italic" x="718" y="340">x</text>
+                    <text fill="#222222" font-size="17" font-style="italic" x="286" y="45">y</text>
+                    <path d="M120,70 C190,145 270,210 350,222 C390,228 430,220 500,185 C560,155 610,100 640,60" fill="none" stroke="#1f77b4" stroke-linecap="round" stroke-width="4"></path>
+                    <line stroke="#999999" stroke-dasharray="5,5" stroke-width="1.5" x1="380" x2="380" y1="335" y2="222.5"></line>
+                    <line stroke="#999999" stroke-dasharray="5,5" stroke-width="1.5" x1="276.7" x2="380" y1="222.5" y2="222.5"></line>
+                    <circle cx="380" cy="222.5" fill="#d62728" r="6"></circle>
+                    <text fill="#d62728" font-size="14" font-weight="bold" x="390" y="214">a</text>
+                    <text fill="#d62728" font-size="14" font-weight="bold" x="288" y="215">L</text>
+                    <line stroke="#38761d" stroke-width="3" x1="310" x2="365" y1="315" y2="315"></line>
+                    <polygon fill="#38761d" points="365,315 353,309 353,321"></polygon>
+                    <line stroke="#38761d" stroke-width="3" x1="450" x2="395" y1="315" y2="315"></line>
+                    <polygon fill="#38761d" points="395,315 407,309 407,321"></polygon>
+                    <text fill="#38761d" font-size="13" x="315" y="305">x s'acosta a a</text>
+                </svg>
+            </div>
+
+            <h3>1.3. Límits laterals i existència de límit</h3>
+            <p>Perquè existeixi el límit d'una funció en un punt \(a\), és condició necessària i suficient que els dos <strong>límits laterals</strong> existeixin i siguin iguals:</p>
+            $$\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L$$
+
+            <hr/>
+
+            <!-- SECCIÓ 2: PROPIETATS DELS LÍMITS -->
+            <h3 class="section-title" id="sec2">2. Propietats dels límits</h3>
+            <p>Siguin \(f(x)\) i \(g(x)\) dues funcions tals que \(\lim_{x \to a} f(x) = L\) i \(\lim_{x \to a} g(x) = M\) (amb \(L, M \in \mathbb{R}\)):</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operació</th>
+                        <th>Propietat del límit</th>
+                        <th>Condició</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Suma / Resta</strong></td>
+                        <td>$$\lim_{x \to a} [f(x) \pm g(x)] = L \pm M$$</td>
+                        <td>Cap</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Producte per constant</strong></td>
+                        <td>$$\lim_{x \to a} [k \cdot f(x)] = k \cdot L$$</td>
+                        <td>\(k \in \mathbb{R}\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Producte</strong></td>
+                        <td>$$\lim_{x \to a} [f(x) \cdot g(x)] = L \cdot M$$</td>
+                        <td>Cap</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quocient</strong></td>
+                        <td>$$\lim_{x \to a} \left[\frac{f(x)}{g(x)}\right] = \frac{L}{M}$$</td>
+                        <td>\(M \neq 0\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Potència</strong></td>
+                        <td>$$\lim_{x \to a} [f(x)^{g(x)}] = L^M$$</td>
+                        <td>\(L > 0\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arrel</strong></td>
+                        <td>$$\lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L}$$</td>
+                        <td>Si \(n\) és parell, \(L \ge 0\)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr/>
+
+            <!-- SECCIÓ 3: CÀLCUL DE LÍMITS -->
+            <h3 class="section-title" id="sec3">3. Càlcul de límits</h3>
+
+            <h3>3.1. Càlcul de límits d'una funció en un punt \(\lim_{x \to a} f(x)\)</h3>
+            
+            <ul>
+                <li>
+                    <strong>En funcions definides a trossos:</strong> En els punts on canvia la definició (punts de ruptura), cal calcular obligatòriament els <strong>límits laterals</strong> (per l'esquerra i per la dreta).
+                    <div class="box-info">
+                        Si \(\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L \implies \exists \lim_{x \to a} f(x) = L\)
+                    </div>
+                </li>
+                <li>
+                    <strong>On no canvia la definició (o en funcions contínues):</strong> Hem de substituir directament \(x = a\) a la funció \(f(x)\), és a dir, calcular la imatge \(f(a)\).
+                </li>
+            </ul>
+
+            <p>En substituir \(x = a\), ens trobem amb els casos següents:</p>
+
+            <div class="box-info">
+                <ol style="margin-bottom: 0;">
+                    <li>
+                        <strong>Si \(f(a) \in \mathbb{R}\):</strong> El límit existeix directament i és igual al valor obtingut:
+                        $$\lim_{x \to a} f(x) = f(a)$$
+                    </li>
+                    <li>
+                        <strong>Si \(f(a) = \frac{0}{0}\) (Indeterminació):</strong> Cal factoritzar el numerador i el denominador (per exemple, per la regla de Ruffini o resolent l'equació de 2n grau) i simplificar el factor comú \((x - a)\). A continuació, es torna a substituir \(x = a\).
+                    </li>
+                    <li>
+                        <strong>Si \(f(a) = \frac{k}{0}\) amb \(k \neq 0\):</strong> El resultat és infinit (\(\pm\infty\)). Per determinar el signe exactament de l'infinit i veure el comportament a cada banda, cal estudiar els límits laterals.
+                        <div class="box-alert" style="margin-top: 8px; margin-bottom: 0;">
+                            💡 En aquest cas (\(\frac{k}{0}\)), podem concloure que la recta <strong>\(x = a\) és una asímptota vertical</strong> de la funció.
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>3.2. Càlcul de límits d'una funció a l'infinit \(\lim_{x \to \pm\infty} f(x)\)</h3>
+
+            <h4>1) Si \(f(x)\) és un polinomi:</h4>
+            <p>Només ens interessa el terme de grau més gran, ja que per a valors molt grans (positius o negatius) té molt més pes que la resta de termes. Els límits sempre donaran infinit (\(\pm\infty\)), i el signe es determina substituint:</p>
+
+            <div class="box-info">
+                $$\lim_{x \to +\infty} (a_n x^n + a_{n-1} x^{n-1} + \dots + a_0) = \lim_{x \to +\infty} a_n x^n = a_n (+\infty)^n = \pm\infty$$
+                <p><em>El signe de l'infinit depèn del signe del coeficient \(a_n\).</em></p>
+                
+                $$\lim_{x \to -\infty} (a_n x^n + a_{n-1} x^{n-1} + \dots + a_0) = \lim_{x \to -\infty} a_n x^n = a_n (-\infty)^n = \pm\infty$$
+                <p><em>El signe depèn del signe del coeficient \(a_n\) i de si l'exponent \(n\) és parell o imparell.</em></p>
+            </div>
+
+            <h4>2) Si \(f(x)\) és una fracció algebraica (quocient de polinomis):</h4>
+            <p>Surt la indeterminació \(\left[\frac{\infty}{\infty}\right]\). Es comparen els graus del numerador (\(n\)) i del denominador (\(m\)):</p>
+
+            <div class="box-info">
+                $$\lim_{x \to \pm\infty} \frac{a_n x^n + a_{n-1} x^{n-1} + \dots + a_0}{b_m x^m + b_{m-1} x^{m-1} + \dots + b_0} = \lim_{x \to \pm\infty} \frac{a_n x^n}{b_m x^m}$$
+
+                <ul style="margin-top: 10px; margin-bottom: 0;">
+                    <li>
+                        <strong>Si \(m > n\) (grau del denominador més gran):</strong>
+                        $$\lim_{x \to \pm\infty} \frac{a_n x^n}{b_m x^m} = \frac{a_n}{b_m x^{m-n}} = \frac{k}{\pm\infty} = 0$$
+                        <em>El resultat sempre és \(0\).</em>
+                    </li>
+                    <li>
+                        <strong>Si \(m = n\) (mateix grau):</strong>
+                        $$\lim_{x \to \pm\infty} \frac{a_n x^n}{b_m x^n} = \frac{a_n}{b_m}$$
+                        <em>Simplifiquem i s'obté un nombre real diferent de zero.</em>
+                    </li>
+                    <li>
+                        <strong>Si \(n > m\) (grau del numerador més gran):</strong>
+                        $$\lim_{x \to \pm\infty} \frac{a_n x^n}{b_m x^m} = \frac{a_n x^{n-m}}{b_m} = \pm\infty$$
+                        <em>El resultat sempre és infinit (\(\pm\infty\)); el signe es determina substituint.</em>
+                    </li>
+                </ul>
+            </div>
+
+            <h4>3) Potències:</h4>
+            <p>Per avaluar el límit d'una potència quan \(x \to \pm\infty\):</p>
+            $$\lim_{x \to \pm\infty} [f(x)]^{g(x)} = \left( \lim_{x \to \pm\infty} f(x) \right)^{\lim_{x \to \pm\infty} g(x)}$$
+
+            <div class="box-info">
+                <div class="grid-2">
+                    <div>
+                        $$a^{+\infty} = \begin{cases} +\infty & \text{si } a > 1 \\ 0 & \text{si } 0 < a < 1 \end{cases}$$
+                    </div>
+                    <div>
+                        $$a^{-\infty} = \frac{1}{a^{+\infty}} = \begin{cases} 0 & \text{si } a > 1 \\ +\infty & \text{si } 0 < a < 1 \end{cases}$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-alert">
+                <strong>Principals tipus d'indeterminacions:</strong>
+                <ul style="margin-top: 5px; margin-bottom: 0;">
+                    <li>\(\left[\frac{0}{0}\right]\) (es resol factoritzant)</li>
+                    <li>\(\left[\frac{\infty}{\infty}\right]\) (es resol comparant els graus del numerador i denominador)</li>
+                    <li>\([\infty - \infty]\) (quan els dos termes tenen el mateix grau o amb arrels)</li>
+                    <li>\([1^\infty]\) (indeterminació de tipus el nombre \(e\))</li>
+                </ul>
+            </div>
+
+            <hr/>
+
+            <!-- SECCIÓ 4: CONTINUÏTAT -->
+            <h3 class="section-title" id="sec4">4. Continuïtat d'una funció</h3>
+            
+            <h3>4.1. Idea intuïtiva</h3>
+            <p>Una funció és contínua si la seva gràfica es pot dibuixar d'un sol traç, sense aixecar el llapis del paper.</p>
+
+            <h3>4.2. Condicions de continuïtat en un punt</h3>
+            <p>Diem que una funció $f(x)$ és <strong>contínua en un punt $x = a$</strong> si es compleixen les 3 condicions:</p>
+
+            <ol>
+                <li><strong>Existeix la imatge del punt:</strong> \(a \in \text{Dom}(f) \implies \exists f(a)\).</li>
+                <li><strong>Existeix el límit de la funció en aquest punt:</strong> \(\exists \lim_{x \to a} f(x)\) (és a dir, \(\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)\)).</li>
+                <li><strong>El valor del límit coincideix amb la imatge:</strong> $$\lim_{x \to a} f(x) = f(a)$$</li>
+            </ol>
+
+            <div class="example-box">
+                <p>A continuació es representen els quatre casos segons la relació entre la imatge i el límit en el punt \(x = a\):</p>
+
+                <!-- GRAELLA 2x2 AJUSTADA -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; box-sizing: border-box;">
+                    
+                    <!-- Cas 1: Funció Contínua -->
+                    <div class="box-info" style="text-align: center; min-width: 0; box-sizing: border-box; padding: 12px;">
+                        <h4 style="margin-top: 0;">Funció contínua</h4>
+                        <div class="svg-box" style="margin: 0 auto; max-width: 100%;">
+                            <svg aria-label="Funció contínua en x = a" height="190" viewBox="0 0 360 210" width="100%">
+                                <rect fill="#ffffff" height="210" width="360" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="330" y1="170" y2="170"></line>
+                                <line stroke="#222222" stroke-width="2" x1="70" x2="70" y1="190" y2="20"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="210" x2="210" y1="170" y2="60"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="70" x2="210" y1="60" y2="60"></line>
+                                <path d="M 50,150 Q 140,100 210,60 T 310,30" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <circle cx="210" cy="60" fill="#222222" r="5"></circle>
+                                <text fill="#222222" font-size="14" font-style="italic" x="210" y="188" text-anchor="middle">a</text>
+                                <text fill="#222222" font-size="14" font-style="italic" x="60" y="64" text-anchor="end">f(a)</text>
+                                <text fill="#222222" font-size="14" font-weight="bold" x="290" y="30">f(x)</text>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.88em; padding: 4px 0;">
+                            $$\exists \lim_{x \to a} f(x) = f(a)$$
+                        </div>
+                    </div>
+
+                    <!-- Cas 2: Discontinuïtat Evitable (Sense imatge) -->
+                    <div class="box-info" style="text-align: center; min-width: 0; box-sizing: border-box; padding: 12px;">
+                        <h4 style="margin-top: 0;">Discontínua (no existeix imatge)</h4>
+                        <div class="svg-box" style="margin: 0 auto; max-width: 100%;">
+                            <svg aria-label="Discontinuïtat evitable sense imatge" height="190" viewBox="0 0 360 210" width="100%">
+                                <rect fill="#ffffff" height="210" width="360" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="330" y1="170" y2="170"></line>
+                                <line stroke="#222222" stroke-width="2" x1="70" x2="70" y1="190" y2="20"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="210" x2="210" y1="170" y2="60"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="70" x2="210" y1="60" y2="60"></line>
+                                <path d="M 50,150 Q 140,100 205,63" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <path d="M 215,57 Q 260,40 310,30" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <circle cx="210" cy="60" fill="#ffffff" r="5" stroke="#222222" stroke-width="2.5"></circle>
+                                <text fill="#222222" font-size="14" font-style="italic" x="210" y="188" text-anchor="middle">a</text>
+                                <text fill="#222222" font-size="14" font-style="italic" x="60" y="64" text-anchor="end">L</text>
+                                <text fill="#222222" font-size="14" font-weight="bold" x="290" y="30">f(x)</text>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.88em; padding: 4px 0;">
+                            $$\begin{array}{l} \not\exists f(a) \\ \exists \lim_{x \to a} f(x) = L \end{array} \Bigg\}$$
+                        </div>
+                    </div>
+
+                    <!-- Cas 3: Discontinuïtat Evitable (Imatge desplaçada) -->
+                    <div class="box-info" style="text-align: center; min-width: 0; box-sizing: border-box; padding: 12px;">
+                        <h4 style="margin-top: 0;">Discontínua (\(f(a) \neq L\))</h4>
+                        <div class="svg-box" style="margin: 0 auto; max-width: 100%;">
+                            <svg aria-label="Discontinuïtat evitable f(a) diferent de L" height="190" viewBox="0 0 360 210" width="100%">
+                                <rect fill="#ffffff" height="210" width="360" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="330" y1="170" y2="170"></line>
+                                <line stroke="#222222" stroke-width="2" x1="70" x2="70" y1="190" y2="20"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="210" x2="210" y1="170" y2="35"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="70" x2="210" y1="60" y2="60"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="70" x2="210" y1="35" y2="35"></line>
+                                <path d="M 50,150 Q 140,100 205,63" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <path d="M 215,57 Q 260,40 310,30" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <circle cx="210" cy="60" fill="#ffffff" r="5" stroke="#222222" stroke-width="2.5"></circle>
+                                <circle cx="210" cy="35" fill="#222222" r="5"></circle>
+                                <text fill="#222222" font-size="14" font-style="italic" x="210" y="188" text-anchor="middle">a</text>
+                                <text fill="#222222" font-size="14" font-style="italic" x="60" y="64" text-anchor="end">L</text>
+                                <text fill="#222222" font-size="14" font-style="italic" x="60" y="39" text-anchor="end">f(a)</text>
+                                <text fill="#222222" font-size="14" font-weight="bold" x="290" y="30">f(x)</text>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.88em; padding: 4px 0;">
+                            $$\exists \lim_{x \to a} f(x) = L \neq f(a)$$
+                        </div>
+                    </div>
+
+                    <!-- Cas 4: Discontinuïtat Inevitable de Salt -->
+                    <div class="box-info" style="text-align: center; min-width: 0; box-sizing: border-box; padding: 12px;">
+                        <h4 style="margin-top: 0;">Discontínua (no existeix límit)</h4>
+                        <div class="svg-box" style="margin: 0 auto; max-width: 100%;">
+                            <svg aria-label="Discontinuïtat de salt, no existeix límit" height="190" viewBox="0 0 360 210" width="100%">
+                                <rect fill="#ffffff" height="210" width="360" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="330" y1="170" y2="170"></line>
+                                <line stroke="#222222" stroke-width="2" x1="70" x2="70" y1="190" y2="20"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="210" x2="210" y1="170" y2="50"></line>
+                                <line stroke="#888888" stroke-dasharray="4,4" stroke-width="1.5" x1="70" x2="210" y1="50" y2="50"></line>
+                                <path d="M 50,150 Q 140,110 205,92" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <circle cx="210" cy="90" fill="#ffffff" r="5" stroke="#222222" stroke-width="2.5"></circle>
+                                <path d="M 210,50 Q 260,38 310,32" fill="none" stroke="#222222" stroke-width="2.5"></path>
+                                <circle cx="210" cy="50" fill="#222222" r="5"></circle>
+                                <text fill="#222222" font-size="14" font-style="italic" x="210" y="188" text-anchor="middle">a</text>
+                                <text fill="#222222" font-size="14" font-style="italic" x="60" y="54" text-anchor="end">f(a)</text>
+                                <text fill="#222222" font-size="14" font-weight="bold" x="290" y="30">f(x)</text>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.88em; padding: 4px 0;">
+                            $$\not\exists \lim_{x \to a} f(x)$$
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3>4.3. Classificació de les discontinuïtats</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipus de discontinuïtat</th>
+                        <th>Característica principal</th>
+                        <th>Descripció matemàtica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Evitable</strong></td>
+                        <td>Existeix el límit finit, però no coincideix amb la imatge (o no existeix imatge).</td>
+                        <td>$$\exists \lim_{x \to a} f(x) = L \in \mathbb{R}, \text{ però } L \neq f(a)$$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inevitable de salt finit</strong></td>
+                        <td>Els límits laterals existeixen i són finits, però són diferents.</td>
+                        <td>$$\lim_{x \to a^-} f(x) = L_1 \neq \lim_{x \to a^+} f(x) = L_2 \quad (L_1, L_2 \in \mathbb{R})$$
+                        $$\text{Salt } S = |L_1 - L_2|$$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inevitable de salt infinit (asimptòtica)</strong></td>
+                        <td>Almenys un dels dos límits laterals és infinit.</td>
+                        <td>$$\lim_{x \to a^-} f(x) = \pm\infty \quad \text{o} \quad \lim_{x \to a^+} f(x) = \pm\infty$$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>De segona espècie</strong></td>
+                        <td>No existeix almenys un dels límits laterals.</td>
+                        <td>$$\not\exists \lim_{x \to a^-} f(x) \quad \text{i/o} \quad \not\exists \lim_{x \to a^+} f(x)$$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4.4. Particularitat de les funcions definides a trossos</h3>
+            <p>Les <strong>funcions a trossos</strong> són aquelles que tenen expressions analítiques diferents segons l'interval de la variable \(x\). Per estudiar-ne la continuïtat i el comportament cal analitzar dos aspectes principals:</p>
+            <ul>
+                <li><strong>Dins de cada definició (branca):</strong> s'estudia la continuïtat de cada fórmula individual segons el seu domini propi (identificant punts on s'anul·len denominadors, arrels de radicant negatiu o logaritmes de valors no positius).</li>
+                <li><strong>Punts on canvia la definició (punts de ruptura \(x = a\)):</strong> s'avaluen estrictament la imatge \(f(a)\) i els <strong>límits laterals</strong> per l'esquerra i per la dreta per comprovar si el límit global existeix i si coincideix amb la imatge.</li>
+            </ul>
+
+            <div class="box-alert">
+                <strong>Casos i indeterminacions habituals en funcions a trossos:</strong>
+                <ul>
+                    <li><strong>Continuïtat completa:</strong> Si \(\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = f(a)\), la funció és contínua al punt de canvi.</li>
+                    <li><strong>Discontinuïtat de salt finit:</strong> Quan els límits laterals donen valors reals diferents (\(L_1 \neq L_2\)). El salt ve donat per \(S = |L_1 - L_2|\).</li>
+                    <li><strong>Indeterminació \(\left[\frac{0}{0}\right]\) en alguna branca:</strong> Si una de les branques produeix un quocient \(\frac{0}{0}\) en apropar-se al punt de ruptura o en un punt intern del seu interval, s'ha de factoritzar el factor comú \((x - a)\) i simplificar abans d'avaluar el límit lateral.</li>
+                    <li><strong>Indeterminació \(\left[\frac{k}{0}\right]\) (\(k \neq 0\)):</strong> Produeix un salt infinit o asímptota vertical al punt corresponent.</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <strong>Exemple:</strong> Sigui la funció a trossos
+                $$f(x) = \begin{cases} x + 1 & \text{si } x < 2 \\ 4 - x & \text{si } x \ge 2 \end{cases}$$
+                En el punt de canvi \(x = 2\):
+                <ul>
+                    <li>Límit per l'esquerra: \(\lim_{x \to 2^-} (x + 1) = 3\)</li>
+                    <li>Límit per la dreta: \(\lim_{x \to 2^+} (4 - x) = 2\)</li>
+                    <li>Imatge: \(f(2) = 4 - 2 = 2\)</li>
+                </ul>
+                Com que \(\lim_{x \to 2^-} f(x) \neq \lim_{x \to 2^+} f(x)\), no existeix el límit global i tenim una <strong>discontinuïtat inevitable de salt finit</strong> de mida \(|3 - 2| = 1\).
+
+                <div class="svg-box" style="margin-top: 15px;">
+                    <svg aria-label="Discontinuïtat de salt finit en funció a trossos" height="300" viewBox="0 0 500 300" width="100%">
+                        <rect fill="#ffffff" height="300" width="500" x="0" y="0"></rect>
+                        <text fill="#1a365d" font-size="16" font-weight="bold" text-anchor="middle" x="250" y="25">Discontinuïtat en un punt de ruptura (x = 2)</text>
+                        <!-- Quadrícula i eixos -->
+                        <line stroke="#eeeeee" x1="50" x2="450" y1="230" y2="230"></line>
+                        <line stroke="#eeeeee" x1="50" x2="450" y1="170" y2="170"></line>
+                        <line stroke="#eeeeee" x1="50" x2="450" y1="110" y2="110"></line>
+                        <line stroke="#222222" stroke-width="2" x1="50" x2="450" y1="230" y2="230"></line>
+                        <line stroke="#222222" stroke-width="2" x1="150" x2="150" y1="260" y2="40"></line>
+                        
+                        <!-- Etiquetes Eixos -->
+                        <text font-size="12" x="140" y="245">0</text>
+                        <text font-size="12" x="250" y="245">2</text>
+                        <text font-size="12" x="130" y="115">3</text>
+                        <text font-size="12" x="130" y="175">2</text>
+                        <line stroke="#cccccc" stroke-dasharray="4,4" x1="250" x2="250" y1="230" y2="50"></line>
+
+                        <!-- Branca esquerra: y = x+1 fins a (2,3) -->
+                        <line stroke="#1f77b4" stroke-width="3" x1="50" x2="250" y1="200" y2="110"></line>
+                        <circle cx="250" cy="110" fill="#ffffff" r="5" stroke="#1f77b4" stroke-width="2.5"></circle>
+
+                        <!-- Branca dreta: y = 4-x des de (2,2) -->
+                        <line stroke="#2ca02c" stroke-width="3" x1="250" x2="410" y1="170" y2="250"></line>
+                        <circle cx="250" cy="170" fill="#2ca02c" r="5"></circle>
+
+                        <!-- Salt -->
+                        <line stroke="#d62728" stroke-dasharray="3,3" stroke-width="2" x1="255" x2="255" y1="115" y2="165"></line>
+                        <text fill="#d62728" font-size="13" font-weight="bold" x="265" y="145">Salt = 1</text>
+                    </svg>
+                </div>
+            </div>
+
+            <hr/>
+
+            <!-- SECCIÓ 5: ASÍMPTOTES -->
+            <h3 class="section-title" id="sec5">5. Asímptotes d'una funció</h3>
+            <p>Una <strong>asímptota</strong> és una recta a la qual la gràfica d'una funció s'acosta indefinidament quan la variable \(x\) o la imatge \(f(x)\) tendeixen a l'infinit.</p>
+
+            <!-- 5.1 ASÍMPTOTA VERTICAL -->
+            <h3>5.1. Asímptotes verticals</h3>
+            <p>La recta vertical d'equació <strong>\(x = a\)</strong> és una asímptota vertical de la funció \(f(x)\) si es compleix que almenys un dels límits laterals en aquest punt és infinit:</p>
+            $$\lim_{x \to a^-} f(x) = \pm\infty \quad \text{o} \quad \lim_{x \to a^+} f(x) = \pm\infty$$
+            <p><em>On buscar-les?</em> En els punts que no pertanyen al domini de la funció (per exemple, punts que anul·len el denominador en funcions racionals).</p>
+
+            <div class="svg-box">
+                <svg aria-label="Asímptota Vertical" height="260" viewBox="0 0 500 260" width="100%">
+                    <rect fill="#ffffff" height="260" width="500" x="0" y="0"></rect>
+                    <text fill="#1a365d" font-size="15" font-weight="bold" text-anchor="middle" x="250" y="22">Asímptota Vertical: x = a</text>
+                    <line stroke="#222222" stroke-width="2" x1="50" x2="450" y1="140" y2="140"></line>
+                    <line stroke="#222222" stroke-width="2" x1="120" x2="120" y1="240" y2="30"></line>
+
+                    <!-- Asímptota x = 250 (a) -->
+                    <line stroke="#d62728" stroke-dasharray="6,4" stroke-width="2.5" x1="260" x2="260" y1="30" y2="240"></line>
+                    <text fill="#d62728" font-size="13" font-weight="bold" x="268" y="50">x = a</text>
+
+                    <!-- Curva esquerra a -infinit -->
+                    <path d="M 80,130 Q 220,135 245,240" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                    <!-- Curva dreta a +infinit -->
+                    <path d="M 275,30 Q 300,145 440,150" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                </svg>
+            </div>
+
+            <!-- 5.2 ASÍMPTOTA HORITZONTAL -->
+            <h3>5.2. Asímptotes horitzontals</h3>
+            <p>La recta horitzontal d'equació <strong>\(y = L\)</strong> és una asímptota horitzontal de la funció \(f(x)\) quan \(x\) tendeix a l'infinit si:</p>
+            $$\lim_{x \to +\infty} f(x) = L \quad \text{o} \quad \lim_{x \to -\infty} f(x) = L \quad (L \in \mathbb{R})$$
+
+            <div class="svg-box">
+                <svg aria-label="Asímptota Horitzontal" height="260" viewBox="0 0 500 260" width="100%">
+                    <rect fill="#ffffff" height="260" width="500" x="0" y="0"></rect>
+                    <text fill="#1a365d" font-size="15" font-weight="bold" text-anchor="middle" x="250" y="22">Asímptota Horitzontal: y = L</text>
+                    <line stroke="#222222" stroke-width="2" x1="50" x2="450" y1="200" y2="200"></line>
+                    <line stroke="#222222" stroke-width="2" x1="120" x2="120" y1="240" y2="40"></line>
+
+                    <!-- Asímptota y = L (y=100) -->
+                    <line stroke="#d62728" stroke-dasharray="6,4" stroke-width="2.5" x1="50" x2="450" y1="100" y2="100"></line>
+                    <text fill="#d62728" font-size="13" font-weight="bold" x="380" y="90">y = L</text>
+
+                    <!-- Corba acostant-se a y=L -->
+                    <path d="M 60,220 C 120,180 200,110 440,103" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                </svg>
+            </div>
+
+            <!-- 5.3 ASÍMPTOTA OBLIQUA -->
+            <h3>5.3. Asímptotes obliqües</h3>
+            <p>La recta obliqua d'equació <strong>\(y = mx + n\)</strong> (amb \(m \neq 0\)) és una asímptota obliqua si la funció s'acosta a aquesta recta a l'infinit.</p>
+            
+            <div class="box-alert">
+                <strong>Regla important:</strong> Una funció <u>no pot tenir</u> asímptota obliqua en la mateixa direcció (\(+\infty\) o \(-\infty\)) on ja té una asímptota horitzontal.
+            </div>
+
+            <p>Càlcul dels paràmetres \(m\) i \(n\):</p>
+            $$m = \lim_{x \to \pm\infty} \frac{f(x)}{x} \quad (m \in \mathbb{R}, m \neq 0)$$
+            $$n = \lim_{x \to \pm\infty} [f(x) - m \cdot x] \quad (n \in \mathbb{R})$$
+
+            <div class="svg-box">
+                <svg aria-label="Asímptota Obliqua" height="280" viewBox="0 0 500 280" width="100%">
+                    <rect fill="#ffffff" height="280" width="500" x="0" y="0"></rect>
+                    <text fill="#1a365d" font-size="15" font-weight="bold" text-anchor="middle" x="250" y="22">Asímptota Obliqua: y = mx + n</text>
+                    <line stroke="#222222" stroke-width="2" x1="50" x2="450" y1="220" y2="220"></line>
+                    <line stroke="#222222" stroke-width="2" x1="120" x2="120" y1="260" y2="40"></line>
+
+                    <!-- Asímptota obliqua y = x + 20 (línia inclinada) -->
+                    <line stroke="#d62728" stroke-dasharray="6,4" stroke-width="2.5" x1="60" x2="430" y1="230" y2="60"></line>
+                    <text fill="#d62728" font-size="13" font-weight="bold" x="330" y="85">y = mx + n</text>
+
+                    <!-- Corba acostant-se a l'asímptota obliqua -->
+                    <path d="M 80,250 Q 200,210 260,145 T 440,58" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                </svg>
+            </div>
+
+        </div> <!-- Tanca el content-container -->
+        
+        <!-- SIDEBAR DE NAVEGACIÓ LATERAL -->
+        <div class="sidebar-wrapper">
+            <nav class="toc-sidebar">
+                <h4>Contingut</h4>
+                <ul>
+                    <li><a href="#sec1">1. Idea intuïtiva de límit</a></li>
+                    <li><a href="#sec2">2. Propietats dels límits</a></li>
+                    <li><a href="#sec3">3. Càlcul de límits</a></li>
+                    <li><a href="#sec4">4. Continuïtat i funcions a trossos</a></li>
+                    <li><a href="#sec5">5. Asímptotes</a></li>
+                </ul>
+            </nav>
+
+            <div class="firma-pagina">
+                <br><br><br>
+                © 2026 Contingut creat per <br> Luz Lozano i Marta Planas,<br>amb el suport tècnic de Gemini 
+            </div>
+        </div> <!-- Tanca el sidebar-wrapper -->
+
+    </div> <!-- Tanca el container-principal -->
+
+</body>
+</html>

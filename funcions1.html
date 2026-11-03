@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcions</title>
+    <!-- Enllaç al fitxer d'estil extern -->
+    <link rel="stylesheet" href="estils.css">
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+    <nav class="navbar-superior">
+    <span class="navbar-titol">Matemàtiques aplicades a les CCSS</span>
+    <ul class="menu-principal">
+        <!-- Element 1: Àlgebra amb els seus desplegables -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Àlgebra</a>
+            <ul class="submenu-desplegable">
+                <li><a href="index.html">Matrius</a></li>
+                <li><a href="algebra2.html">Determinants</a></li>
+                <li><a href="algebra3.html">Sistemes</a></li>
+            </ul>
+        </li>
+        
+        <!-- Element 2: Anàlisis -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Càlcul</a>
+            <ul class="submenu-desplegable">
+                <li><a href="funcions1.html">Funcions</a></li>
+                <li><a href="funcions2.html">Límits i continuïtat</a></li>
+                <li><a href="funcions3.html">Derivades</a></li>
+                <li><a href="funcions3.html">Aplicacions a la derivada</a></li>
+            </ul>
+        </li>
+        
+        <!-- Element 3: Estadística i Probabilitat -->
+        <li class="element-menu">
+            <a href="#" class="enllac-principal">Estadística i Probabilitat</a>
+            <ul class="submenu-desplegable">
+                <!-- Aquí afegiràs les línies <li> quan les tinguis -->
+            </ul>
+        </li>
+
+    </ul>
+    <!-- El logo integrat a la part dreta -->
+    <img src="Img/logo.jpg" alt="Logo Institut Pere Borrell" class="navbar-logo">
+</nav>
+
+    <!-- CONTENIDOR PRINCIPAL (AMB SIDEBAR I CONTINGUT) -->
+    <div class="container-principal">
+
+        <div class="content-container">
+            
+            <!-- BOTÓ D'IMPRESSIÓ -->
+            <button class="btn-imprimir" onclick="window.print()">
+                🖨️ Descarrega el temari en PDF
+            </button>
+
+            <h2>Funcions: concepte i domini</h2>
+
+            <!-- SECCIÓ 1: CONCEPTE DE FUNCIÓ -->
+            <h3 class="section-title" id="sec1">1. Concepte de funció</h3>
+            <p>Una <strong>funció real de variable real</strong> és una relació o correspondència entre dos conjunts de nombres reals de manera que a cada valor de la variable independent $x$ li correspon, com a màxim, <strong>un únic valor de la variable dependent</strong> $$y = f(x)$$</p>
+            
+            <ul>
+                <li><strong>Variable independent ($x$): </strong> és la variable d'entrada a la qual podem assignar valors lliurement (sempre que estiguin dins del domini de la funció).</li>
+                <li><strong>Variable dependent ($y$):</strong> és el resultat, el valor de la qual depèn directament de la variable independent.</li>
+            </ul>
+
+            <!-- FLEXBOX AL COSTAT DE L'EXPRESSIÓ DE FUNCIONS -->
+            <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; margin-top: 15px; margin-bottom: 20px;">
+                
+                <!-- TEXT EXPLICATIU A L'ESQUERRA -->
+                <div style="flex: 1.2; min-width: 280px;">
+                    <p style="margin-top: 0;">Una funció es pot expressar de quatre formes diferents:</p>
+                    <ul>
+                    	<li><strong>Enunciat o descripció verbal:</strong> Explicació contextualitzada de la relació.</li>
+                        <li><strong>Expressió algebraica o fórmula.</strong> </li>
+                        <li><strong>Taula de valors:</strong> Parelles ordenades de valors $(x, y)$.</li>
+                        <li><strong>Representació gràfica:</strong> Dibuix al pla cartesià $(x, y)$.</li>
+                    </ul>
+                </div>
+
+                <!-- EXEMPLE COMPACTE AL COSTAT DRETA -->
+                <div class="example-box" style="flex: 1; min-width: 260px; max-width: 350px; font-size: 0.88em; padding: 12px; margin: 0;">
+                    <p style="margin-top: 0;">Un servei de lloguer de bicicletes té un cost fix de $20\text{ €}$ més $15\text{ €}$ per hora d'ús.</p>
+                    
+                    <div style="text-align: center; margin: 8px 0; font-weight: bold;">
+                        $$f(x) = 15x + 20$$
+                    </div>
+
+                    <table style="width: 100%; text-align: center; border-collapse: collapse; margin: 8px 0; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background-color: #e9ecef; border-bottom: 1px solid #ccc;">
+                                <th style="padding: 4px;">$x$ (h)</th>
+                                <th style="padding: 4px;">0</th>
+                                <th style="padding: 4px;">1</th>
+                                <th style="padding: 4px;">2</th>
+                                <th style="padding: 4px;">3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 4px; font-weight: bold;">$y$ (€)</td>
+                                <td style="padding: 4px;">20</td>
+                                <td style="padding: 4px;">35</td>
+                                <td style="padding: 4px;">50</td>
+                                <td style="padding: 4px;">65</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="svg-box" style="margin-top: 8px; padding: 4px;">
+                        <svg aria-label="Representació gràfica d'una funció lineal" height="150" viewBox="0 0 450 190" width="100%">
+                            <rect fill="#ffffff" height="190" width="450" x="0" y="0"></rect>
+                            <line stroke="#f0f0f0" stroke-width="1" x1="50" x2="420" y1="140" y2="140"></line>
+                            <line stroke="#f0f0f0" stroke-width="1" x1="50" x2="420" y1="100" y2="100"></line>
+                            <line stroke="#f0f0f0" stroke-width="1" x1="50" x2="420" y1="60" y2="60"></line>
+                            <line stroke="#222222" stroke-width="2" x1="60" x2="420" y1="140" y2="140"></line>
+                            <line stroke="#222222" stroke-width="2" x1="60" x2="60" y1="170" y2="20"></line>
+                            <polygon fill="#222222" points="420,140 410,135 410,145"></polygon>
+                            <polygon fill="#222222" points="60,20 55,30 65,30"></polygon>
+                            <text fill="#222222" font-size="14" font-weight="bold" x="425" y="145">x</text>
+                            <text fill="#222222" font-size="14" font-weight="bold" x="68" y="25">y</text>
+                            <circle cx="60" cy="115" fill="#d62728" r="4"></circle>
+                            <circle cx="135" cy="94" fill="#d62728" r="4"></circle>
+                            <circle cx="210" cy="73" fill="#d62728" r="4"></circle>
+                            <circle cx="285" cy="52" fill="#d62728" r="4"></circle>
+                            <line stroke="#1f77b4" stroke-width="3" x1="60" x2="350" y1="115" y2="34"></line>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+            <h3>Imatge i antiimatge d'un valor</h3>
+            <p>A l'hora de treballar amb una funció $y = f(x)$, és fonamental distingir entre el càlcul de la imatge i el de l'antiimatge:</p>
+
+            <ul>
+                <li>
+                    <strong>Imatge ($y$):</strong> Donat un valor concret de la variable independent $x = a$, la seva <strong>imatge</strong> és el valor $y = f(a)$ que s'obté en substituir $x$ per $a$ a la fórmula. Per a cada valor de $x$ del domini, existeix <strong>com a màxim una única imatge</strong>.
+                </li>
+                <li>
+                    <strong>Antiimatge ($x$):</strong> Donat un valor de la variable dependent $y = b$, la seva <strong>antiimatge</strong> és el valor (o valors) de $x$ que compleixen la igualtat $f(x) = b$. Es calcula igualant la funció a $b$ i resolent l'equació resultant. A diferència de la imatge, un valor de $y$ pot tenir <strong>cap, una o diverses antiimatges</strong>.
+                </li>
+            </ul>
+
+            <div class="example-box">
+                <strong>Exemple pràctic:</strong> Donada la funció $f(x) = x^2 - 1$:
+                <ul style="margin-top: 5px; margin-bottom: 0;">
+                    <li>La <strong>imatge</strong> de $x = 3$ és $f(3) = 3^2 - 1 = \mathbf{8}$.</li>
+                    <li>Les <strong>antiimatges</strong> de $y = 3$ es troben resolent $x^2 - 1 = 3 \implies x^2 = 4 \implies \mathbf{x = 2 \text{ i } x = -2}$ (té dues antiimatges).</li>
+                </ul>
+            </div>
+            <div class="box-alert">
+                <span style="color: #c62828; font-size: 1.1em;"><strong>💡 Principals fonts d'error en calcular imatges:</strong></span>
+                <ul style="margin-top: 8px; margin-bottom: 0;">
+                    <li><strong>Error 1:</strong> Divisió per zero ($0$ al denominador).</li>
+                    <li><strong>Error 2:</strong> Valors negatius a l'interior d'una arrel d'índex parell.</li>
+                    <li><strong>Error 3:</strong> Valors negatius o zero a l'interior d'un logaritme.</li>
+                    <li><strong>Error 4:</strong> Valors incompatibles amb el context de l'enunciat (mesures negatives, temps negatiu, etc.).</li>
+                </ul>
+            </div>
+
+            <hr/>
+
+            <!-- SECCIÓ 2: DOMINI D'UNA FUNCIÓ -->
+            <h3 class="section-title" id="sec2">2. Domini d'una funció $y = f(x)$</h3>
+            <p>El <strong>domini</strong> d'una funció és el conjunt de tots els valors de la variable independent $x$ per als quals la funció està definida, és a dir, existeix imatge real $f(x)$. Es denota com $\text{Dom}(f)$ o $D_f$.</p>
+
+
+            <h3>Càlcul analític del domini segons el tipus de funció</h3>
+
+            <ul>
+                <li>
+                    <strong>Funció polinòmica:</strong> Sempre existeix imatge per a qualsevol valor de la variable independent.
+                    <div class="box-info">
+                        $$f(x) = P(x) \implies \mathbf{\text{Dom}(f) = \mathbb{R}}$$
+                    </div>
+                    
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció polinòmica</div>
+                        <p>Calcula el domini de la funció $f(x) = x^2 - 4x + 3$.</p>
+                        <p>Com que és un polinomi de segon grau, es pot avaluar qualsevol nombre real $x$ sense restriccions:</p>
+                        $$\text{Dom}(f) = \mathbb{R} = (-\infty, +\infty)$$
+                        
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció polinòmica de 2n grau" height="220" viewBox="0 0 450 220" width="100%">
+                                <rect fill="#ffffff" height="220" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="410" y1="160" y2="160"></line>
+                                <line stroke="#222222" stroke-width="2" x1="170" x2="170" y1="200" y2="20"></line>
+                                <path d="M 70,25 Q 230,240 370,25" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <text fill="#1f77b4" font-size="14" font-weight="bold" x="380" y="35">f(x) = x² - 4x + 3</text>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Funció racional:</strong> Quocient de dos polinomis. S'exclouen del domini aquells valors que anul·len el denominador.
+                    <div class="box-info">
+                        $$f(x) = \frac{Q(x)}{P(x)} \implies \mathbf{\text{Dom}(f) = \mathbb{R} \setminus \{ x \mid P(x) = 0 \}}$$
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció racional</div>
+                        <p>Troba el domini de $f(x) = \frac{2x + 1}{x - 3}$.</p>
+                        <p>Igualem el denominador a zero per determinar el valor conflictiu:</p>
+                        $$x - 3 = 0 \implies x = 3$$
+                        <p>Per tant, $x = 3$ fa que el denominador sigui zero i es genera un error de divisió per zero:</p>
+                        $$\text{Dom}(f) = \mathbb{R} \setminus \{3\} = (-\infty, 3) \cup (3, +\infty)$$
+
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció racional amb asímptota vertical" height="230" viewBox="0 0 450 230" width="100%">
+                                <rect fill="#ffffff" height="230" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="410" y1="130" y2="130"></line>
+                                <line stroke="#222222" stroke-width="2" x1="120" x2="120" y1="210" y2="20"></line>
+                                <!-- Asímptota vertical x = 3 en vermell -->
+                                <line stroke="#d62728" stroke-dasharray="5,5" stroke-width="2" x1="270" x2="270" y1="20" y2="210"></line>
+                                <!-- Branques de la hipèrbola -->
+                                <path d="M 50,140 Q 230,145 255,210" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <path d="M 285,20 Q 300,115 410,120" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <text fill="#d62728" font-size="13" font-weight="bold" x="278" y="45">x = 3 (No domini)</text>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Funció irracional:</strong> 
+                    <p> Si l'índex de l'arrel és <strong>parell</strong>, el radicand ha de ser major o igual a zero:</p>
+                    <div class="box-info">
+                        $$f(x) = \sqrt[n]{P(x)} \quad (n \text{ parell}) \implies \mathbf{\text{Dom}(f) = \{ x \mid P(x) \ge 0 \}}$$
+                    </div>
+                    <p>Si l'índex és <strong>imparell</strong>, no hi ha cap restricció per l'arrel:</p>
+                    <div class="box-info">
+                        $$g(x) = \sqrt[n]{P(x)} \quad (n \text{ imparell}) \implies \mathbf{\text{Dom}(g) = \text{Dom}(P)}$$
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció irracional</div>
+                        <p>Calcula el domini de $f(x) = \sqrt{x - 2}$.</p>
+                        <p>Com que l'índex és $2$ (parell), el radicand ha de ser no negatiu:</p>
+                        $$x - 2 \ge 0 \implies x \ge 2$$
+                        $$\text{Dom}(f) = [2, +\infty)$$
+
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció irracional d'índex parell" height="210" viewBox="0 0 450 210" width="100%">
+                                <rect fill="#ffffff" height="210" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="410" y1="160" y2="160"></line>
+                                <line stroke="#222222" stroke-width="2" x1="90" x2="90" y1="190" y2="20"></line>
+                                <!-- Punt d'inici x = 2 -->
+                                <circle cx="180" cy="160" fill="#d62728" r="5"></circle>
+                                <!-- Corba de l'arrel -->
+                                <path d="M 180,160 Q 260,80 410,60" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <text fill="#d62728" font-size="13" font-weight="bold" x="175" y="182">x = 2</text>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- FUNCIÓ EXPONENCIAL -->
+                <li>
+                    <strong>Funció exponencial:</strong> La base $a$ ha de ser positiva i diferent de 1 ($a > 0, a \neq 1$). L'exponencial no imposa cap restricció per si mateixa; el domini depèn únicament de l'exponent.
+                    <div class="box-info">
+                        $$f(x) = a^{P(x)} \quad (a > 0, a \neq 1) \implies \mathbf{\text{Dom}(f) = \text{Dom}(P)}$$
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció exponencial</div>
+                        <p>Calcula el domini de $f(x) = 2^{x - 1}$.</p>
+                        <p>Com que l'exponent és un polinomi ($x - 1$), es pot avaluar per a qualsevol nombre real $x$ sense cap restricció:</p>
+                        $$\text{Dom}(f) = \mathbb{R} = (-\infty, +\infty)$$
+
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció exponencial" height="220" viewBox="0 0 450 220" width="100%">
+                                <rect fill="#ffffff" height="220" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="410" y1="170" y2="170"></line>
+                                <line stroke="#222222" stroke-width="2" x1="160" x2="160" y1="200" y2="20"></line>
+                                <!-- Asímptota horitzontal y = 0 a l'esquerra -->
+                                <line stroke="#d62728" stroke-dasharray="4,4" stroke-width="1.5" x1="40" x2="410" y1="170" y2="170"></line>
+                                <!-- Corba exponencial -->
+                                <path d="M 40,165 C 160,160 260,140 370,25" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <text fill="#1f77b4" font-size="14" font-weight="bold" x="270" y="60">f(x) = 2^(x-1)</text>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Funció logarítmica:</strong> L'argument de l'interior del logaritme ha de ser estrictament major que zero.
+                    <div class="box-info">
+                        $$f(x) = \log_b(P(x)) \implies \mathbf{\text{Dom}(f) = \{ x \mid P(x) > 0 \}}$$
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció logarítmica</div>
+                        <p>Determina el domini de $f(x) = \ln(x + 4)$.</p>
+                        <p>Exigim que l'argument sigui estrictament positiu ($> 0$):</p>
+                        $$x + 4 > 0 \implies x > -4$$
+                        $$\text{Dom}(f) = (-4, +\infty)$$
+
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció logarítmica" height="220" viewBox="0 0 450 220" width="100%">
+                                <rect fill="#ffffff" height="220" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="40" x2="410" y1="120" y2="120"></line>
+                                <line stroke="#222222" stroke-width="2" x1="260" x2="260" y1="200" y2="20"></line>
+                                <!-- Asímptota vertical x = -4 -->
+                                <line stroke="#d62728" stroke-dasharray="5,5" stroke-width="2" x1="100" x2="100" y1="20" y2="200"></line>
+                                <!-- Corba del logaritme -->
+                                <path d="M 108,200 Q 120,110 400,60" fill="none" stroke="#1f77b4" stroke-width="3"></path>
+                                <text fill="#d62728" font-size="13" font-weight="bold" x="108" y="38">x = -4</text>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Funció definida a trossos:</strong> Cal analitzar el domini de cada fórmula en el seu interval corresponent i excloure els valors on alguna de les branques doni error.
+                    <div class="box-info">
+                        $$\mathbf{\text{Dom}(f) = \mathbb{R} \setminus \{ x \mid x \text{ no es pot substituir sense error} \}}$$
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Exemple: Funció definida a trossos</div>
+                        <p>Estudia el domini de la funció següent:</p>
+                        $$f(x) = \begin{cases} \dfrac{1}{x + 1} & \text{si } x < 2 \\[8pt] \sqrt{x - 3} & \text{si } x \ge 2 \end{cases}$$
+                        <ul>
+                            <li><strong>Definició 1 ($x < 2$):</strong> $\frac{1}{x+1}$ dona error quan $x + 1 = 0 \implies x = -1$. Com que $-1 < 2$, aquest valor pertany a la branca i s'ha d'excloure del domini.</li>
+                            <li><strong>Definició 2 ($x \ge 2$):</strong> $\sqrt{x-3}$ requereix $x - 3 \ge 0 \implies x \ge 3$. Per als valors compresos a l'interval $[2, 3)$, la branca no té imatge real.</li>
+                        </ul>
+                        $$\text{Dom}(f) = (-\infty, -1) \cup (-1, 2) \cup [3, +\infty)$$
+
+                        <div class="svg-box">
+                            <svg aria-label="Gràfica d'una funció definida a trossos" height="230" viewBox="0 0 450 230" width="100%">
+                                <rect fill="#ffffff" height="230" width="450" x="0" y="0"></rect>
+                                <line stroke="#222222" stroke-width="2" x1="30" x2="420" y1="140" y2="140"></line>
+                                <line stroke="#222222" stroke-width="2" x1="160" x2="160" y1="210" y2="20"></line>
+                                <!-- Asímptota x = -1 -->
+                                <line stroke="#d62728" stroke-dasharray="4,4" stroke-width="1.5" x1="110" x2="110" y1="20" y2="210"></line>
+                                <!-- Canvi de branca x = 2 -->
+                                <line stroke="#aaaaaa" stroke-dasharray="3,3" stroke-width="1.5" x1="240" x2="240" y1="20" y2="210"></line>
+                                <!-- Branca 1 -->
+                                <path d="M 40,150 Q 100,155 105,210" fill="none" stroke="#1f77b4" stroke-width="2.5"></path>
+                                <path d="M 115,20 Q 125,120 240,128" fill="none" stroke="#1f77b4" stroke-width="2.5"></path>
+                                <circle cx="240" cy="128" fill="#ffffff" r="4" stroke="#1f77b4" stroke-width="2"></circle>
+                                <!-- Branca 2 (comença a x = 3) -->
+                                <circle cx="290" cy="140" fill="#2ca02c" r="4"></circle>
+                                <path d="M 290,140 Q 340,90 410,75" fill="none" stroke="#2ca02c" stroke-width="2.5"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="box-success">
+                <strong>💡 Recorregut:</strong> El <strong>recorregut</strong> d'una funció és el conjunt de tots els valors que pren la variable dependent $y = f(x)$. Es denota per $\text{Im}(f)$ o $\text{Rec}(f)$.
+            </div>
+
+            <hr/>
+ </div>
+
+        <!-- SIDEBAR DE NAVEGACIÓ LATERAL -->
+        <div class="sidebar-wrapper">
+            <nav class="toc-sidebar">
+                <h4>Contingut</h4>
+                <ul>
+                    <li><a href="#sec1">1. Concepte de funció</a></li>
+                    <li><a href="#sec2">2. Domini d'una funció</a></li>
+                </ul>
+            </nav>
+
+            <div class="firma-pagina">
+                <br><br><br>
+                © 2026 Contingut creat per <br> Luz Lozano i Marta Planas,<br>amb el suport tècnic de Gemini 
+            </div>
+        </div> <!-- Tanca el sidebar-wrapper -->
+
+    </div> <!-- Tanca el container-principal -->
+
+</body>
+</html>
