@@ -484,3 +484,60 @@ li {
     color: #e53e3e !important;
     font-weight: bold;
 }
+
+table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+
+.algorithm-box {
+    background-color: #f0f7ff;         /* Blau cel molt clar, suau per a la lectura */
+    border-left: 4px solid #3182ce;     /* Línia blava coherent amb els títols h3 */
+    padding: 22px 25px;
+    margin: 30px 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.algorithm-box h4 {
+    color: #1a365d;                    /* Blau marí fosc del tema */
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+    font-weight: 700;
+}
+
+.algorithm-box hr {
+    border: 0;
+    height: 1px;
+    background-color: #cbd5e0;          /* Línia separadora subtil */
+    margin: 20px 0;
+}
+
+.algorithm-box ol, 
+.algorithm-box ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.algorithm-box li {
+    margin-bottom: 12px;
+    color: #2d3748;
+}
+
+.algorithm-box li strong {
+    color: #1e40af;                    /* Ressalta els passos en blau clar */
+}
