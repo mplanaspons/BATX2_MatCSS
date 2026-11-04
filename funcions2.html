@@ -130,75 +130,29 @@
 
             <hr/>
 
-            <!-- SECCIÓ 2: PROPIETATS DELS LÍMITS -->
-            <h3 class="section-title" id="sec2">2. Propietats dels límits</h3>
-            <p>Siguin \(f(x)\) i \(g(x)\) dues funcions tals que \(\lim_{x \to a} f(x) = L\) i \(\lim_{x \to a} g(x) = M\) (amb \(L, M \in \mathbb{R}\)):</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Operació</th>
-                        <th>Propietat del límit</th>
-                        <th>Condició</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Suma / Resta</strong></td>
-                        <td>$$\lim_{x \to a} [f(x) \pm g(x)] = L \pm M$$</td>
-                        <td>Cap</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Producte per constant</strong></td>
-                        <td>$$\lim_{x \to a} [k \cdot f(x)] = k \cdot L$$</td>
-                        <td>\(k \in \mathbb{R}\)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Producte</strong></td>
-                        <td>$$\lim_{x \to a} [f(x) \cdot g(x)] = L \cdot M$$</td>
-                        <td>Cap</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Quocient</strong></td>
-                        <td>$$\lim_{x \to a} \left[\frac{f(x)}{g(x)}\right] = \frac{L}{M}$$</td>
-                        <td>\(M \neq 0\)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Potència</strong></td>
-                        <td>$$\lim_{x \to a} [f(x)^{g(x)}] = L^M$$</td>
-                        <td>\(L > 0\)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Arrel</strong></td>
-                        <td>$$\lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L}$$</td>
-                        <td>Si \(n\) és parell, \(L \ge 0\)</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <hr/>
-
+           
             <!-- SECCIÓ 3: CÀLCUL DE LÍMITS -->
             <h3 class="section-title" id="sec3">3. Càlcul de límits</h3>
 
             <h3>3.1. Càlcul de límits d'una funció en un punt \(\lim_{x \to a} f(x)\)</h3>
             
-            <ul>
-                <li>
-                    <strong>En funcions definides a trossos:</strong> En els punts on canvia la definició (punts de ruptura), cal calcular obligatòriament els <strong>límits laterals</strong> (per l'esquerra i per la dreta).
+
+                     <h4>1) En funcions definides a trossos:</h4>
+                    <p> En els punts on canvia la definició (punts de ruptura), cal calcular obligatòriament els <strong>límits laterals</strong> (per l'esquerra i per la dreta).</p>
                     <div class="box-info">
                         Si \(\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L \implies \exists \lim_{x \to a} f(x) = L\)
                     </div>
-                </li>
-                <li>
-                    <strong>On no canvia la definició (o en funcions contínues):</strong> Hem de substituir directament \(x = a\) a la funció \(f(x)\), és a dir, calcular la imatge \(f(a)\).
-                </li>
-            </ul>
+             
+            
+                    <h4>2) On no canvia la definició (o en funcions contínues):</h4> 
+                    <p>Hem de substituir directament \(x = a\) a la funció \(f(x)\), és a dir, calcular la imatge \(f(a)\).</p>
+              
+      
 
             <p>En substituir \(x = a\), ens trobem amb els casos següents:</p>
 
             <div class="box-info">
-                <ol style="margin-bottom: 0;">
+                <ul>
                     <li>
                         <strong>Si \(f(a) \in \mathbb{R}\):</strong> El límit existeix directament i és igual al valor obtingut:
                         $$\lim_{x \to a} f(x) = f(a)$$
@@ -212,7 +166,7 @@
                             💡 En aquest cas (\(\frac{k}{0}\)), podem concloure que la recta <strong>\(x = a\) és una asímptota vertical</strong> de la funció.
                         </div>
                     </li>
-                </ol>
+                </ul>
             </div>
 
             <h3>3.2. Càlcul de límits d'una funció a l'infinit \(\lim_{x \to \pm\infty} f(x)\)</h3>
@@ -268,7 +222,7 @@
                 </div>
             </div>
 
-            <div class="box-alert">
+            <div class="important-note">
                 <strong>Principals tipus d'indeterminacions:</strong>
                 <ul style="margin-top: 5px; margin-bottom: 0;">
                     <li>\(\left[\frac{0}{0}\right]\) (es resol factoritzant)</li>
@@ -549,13 +503,6 @@
             <h3>5.3. Asímptotes obliqües</h3>
             <p>La recta obliqua d'equació <strong>\(y = mx + n\)</strong> (amb \(m \neq 0\)) és una asímptota obliqua si la funció s'acosta a aquesta recta a l'infinit.</p>
             
-            <div class="box-alert">
-                <strong>Regla important:</strong> Una funció <u>no pot tenir</u> asímptota obliqua en la mateixa direcció (\(+\infty\) o \(-\infty\)) on ja té una asímptota horitzontal.
-            </div>
-
-            <p>Càlcul dels paràmetres \(m\) i \(n\):</p>
-            $$m = \lim_{x \to \pm\infty} \frac{f(x)}{x} \quad (m \in \mathbb{R}, m \neq 0)$$
-            $$n = \lim_{x \to \pm\infty} [f(x) - m \cdot x] \quad (n \in \mathbb{R})$$
 
             <div class="svg-box">
                 <svg aria-label="Asímptota Obliqua" height="280" viewBox="0 0 500 280" width="100%">
@@ -572,7 +519,15 @@
                     <path d="M 80,250 Q 200,210 260,145 T 440,58" fill="none" stroke="#1f77b4" stroke-width="3"></path>
                 </svg>
             </div>
-
+<div class="seccio-exercicis">
+    <h2>Exercicis </h2>
+    <p>Per a treballar els continguts d'aquesta unitat, trobaràs exercicis al següent PDF</p>
+    
+    <!-- Botó de descàrrega directe -->
+    <a href="documents/exercicis-limits-26-27.pdf" target="_blank" class="btn-pdf">
+        📄 Exercicis Límits i continuïtat 26-27
+    </a>
+</div>
         </div> <!-- Tanca el content-container -->
         
         <!-- SIDEBAR DE NAVEGACIÓ LATERAL -->
@@ -581,10 +536,10 @@
                 <h4>Contingut</h4>
                 <ul>
                     <li><a href="#sec1">1. Idea intuïtiva de límit</a></li>
-                    <li><a href="#sec2">2. Propietats dels límits</a></li>
                     <li><a href="#sec3">3. Càlcul de límits</a></li>
                     <li><a href="#sec4">4. Continuïtat i funcions a trossos</a></li>
                     <li><a href="#sec5">5. Asímptotes</a></li>
+                    <li><a href="documents/exercicis-limits-26-27.pdf" target="_blank" class="toc-pdf">📝 Exercicis Límits i continuïtat 26-27</a>
                 </ul>
             </nav>
 
